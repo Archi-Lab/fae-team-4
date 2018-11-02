@@ -36,7 +36,7 @@ public class ContactPointTest {
         contactPoint.setPosition(position);
         contactPoint.setCityName("Köln");
         contactPoint.setZipCode(50667);
-        contactPoint.setAddress("Hohe Str. 13");
+        contactPoint.setAddress("Hohe Straße 13");
 
         Employee employee = new Employee();
         employee.setSurname("Peter");
