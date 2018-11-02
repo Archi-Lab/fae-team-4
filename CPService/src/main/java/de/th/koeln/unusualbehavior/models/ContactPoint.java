@@ -14,10 +14,35 @@ public class ContactPoint {
     private String name;
     @Embedded
     private Position position;
-
     @OneToMany(mappedBy="contactPoint")
     private List<Employer> employer;
+    private String address;
+    private int zipCode;
+    private String cityName;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 
     String getName() {
         return name;
