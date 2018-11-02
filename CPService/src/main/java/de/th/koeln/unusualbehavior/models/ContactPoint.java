@@ -15,7 +15,7 @@ public class ContactPoint {
     @Embedded
     private Position position;
     @OneToMany(mappedBy="contactPoint")
-    private List<Employer> employer;
+    private List<Employee> employee;
     private String address;
     private int zipCode;
     private String cityName;
@@ -73,11 +73,11 @@ public class ContactPoint {
         this.position = position;
     }
 
-    List<Employer> getEmployer() {
-        return employer;
+    List<Employee> getEmployee() {
+        return employee;
     }
 
-    void setEmployer(List<Employer> employer) {
-        this.employer = employer;
+    void setEmployee(List<Employee> employee) {
+        this.employee = employee;
     }
 }
