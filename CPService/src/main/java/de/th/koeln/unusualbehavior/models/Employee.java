@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 
 @Entity
-public class Employer {
+public class Employee {
 
     @ManyToOne
     @JoinColumn(name="contactpoint_id", nullable=false)

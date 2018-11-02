@@ -38,19 +38,19 @@ public class ContactPointTest {
         contactPoint.setZipCode(50667);
         contactPoint.setAddress("Hohe Straße 13");
 
-        Employer employer = new Employer();
-        employer.setSurname("Peter");
-        employer.setName("Müller");
+        Employee employee = new Employee();
+        employee.setSurname("Peter");
+        employee.setName("Müller");
 
-        Employer employer2 = new Employer();
-        employer2.setSurname("Max");
-        employer2.setName("Mustermann");
+        Employee employee2 = new Employee();
+        employee2.setSurname("Max");
+        employee2.setName("Mustermann");
 
-        ArrayList<Employer> employerList = new ArrayList<>();
-        employerList.add(employer);
-        employerList.add(employer2);
+        ArrayList<Employee> employeeList = new ArrayList<>();
+        employeeList.add(employee);
+        employeeList.add(employee2);
 
-        contactPoint.setEmployer(employerList);
+        contactPoint.setEmployee(employeeList);
 
         ContactPoint contactPointSaved = contactPointRepository.save(contactPoint);
 
@@ -63,7 +63,7 @@ public class ContactPointTest {
         assertEquals(position.getLatitude(), contactPointSaved.getPosition().getLatitude(), 0);
         assertEquals(position.getLongitude(), contactPointSaved.getPosition().getLongitude(), 0);
         assertEquals(contactPoint.getCityName(), contactPointSaved.getCityName());
-        assertThat(contactPoint.getEmployer(), IsIterableContainingInOrder.contains((employerList.toArray())));
+        assertThat(contactPoint.getEmployee(), IsIterableContainingInOrder.contains((employeeList.toArray())));
 
         LOGGER.info("ContactPoint was saved:");
         LOGGER.info(contactPointSaved.toString());
