@@ -11,12 +11,12 @@ public class Position {
     private double latitude;
     private double longitude;
 
-    public void setCoordinates(double lat, double lon){
+    void setCoordinates(double lat, double lon){
         latitude = lat;
         longitude = lon;
     }
 
-    public double getLatitude() {
+    double getLatitude() {
         return latitude;
     }
 
@@ -24,7 +24,7 @@ public class Position {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    double getLongitude() {
         return longitude;
     }
 

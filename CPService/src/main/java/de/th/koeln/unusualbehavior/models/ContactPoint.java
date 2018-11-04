@@ -16,23 +16,23 @@ public class ContactPoint {
     private Position position;
     @OneToMany(mappedBy="contactPoint")
     private List<Employee> employee;
-    private String address;
-    private int zipCode;
+    private Address address;
+    private ZipCode zipCode;
     private String cityName;
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public int getZipCode() {
+    public ZipCode getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(ZipCode zipCode) {
         this.zipCode = zipCode;
     }
 

@@ -35,8 +35,8 @@ public class ContactPointTest {
         position.setCoordinates(50.192, 7.65);
         contactPoint.setPosition(position);
         contactPoint.setCityName("Köln");
-        contactPoint.setZipCode(50667);
-        contactPoint.setAddress("Hohe Straße 13");
+        contactPoint.setZipCode(new ZipCode("51061"));
+        contactPoint.setAddress(new Address("Hohe Straße",  "13"));
 
         Employee employee = new Employee();
         employee.setSurname("Peter");
@@ -62,6 +62,7 @@ public class ContactPointTest {
         assertEquals(contactPoint.getName(), contactPointSaved.getName());
         assertEquals(position.getLatitude(), contactPointSaved.getPosition().getLatitude(), 0);
         assertEquals(position.getLongitude(), contactPointSaved.getPosition().getLongitude(), 0);
+        assertEquals(contactPoint.getAddress().getStreet(), contactPointSaved.getAddress().getStreet());
         assertEquals(contactPoint.getCityName(), contactPointSaved.getCityName());
         assertThat(contactPoint.getEmployee(), IsIterableContainingInOrder.contains((employeeList.toArray())));
 
