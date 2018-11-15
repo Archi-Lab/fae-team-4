@@ -9,11 +9,11 @@ public class Sprachnachricht {
 
     Sprachnachricht() { }
 
-    Sprachnachricht(byte[] message){
+    public Sprachnachricht(byte[] message){
         sprachnachricht = message;
     }
 
-    byte[] getSprachnachricht() {
+    public byte[] getSprachnachricht() {
         return sprachnachricht;
     }
 

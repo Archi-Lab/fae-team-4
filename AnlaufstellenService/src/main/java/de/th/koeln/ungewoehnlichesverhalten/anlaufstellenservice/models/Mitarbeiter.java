@@ -1,10 +1,12 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 public class Mitarbeiter {
 
     @ManyToOne
@@ -17,6 +19,7 @@ public class Mitarbeiter {
 
     private String vorname;
     private String name;
+
 
     public long getId() {
         return id;
@@ -46,7 +49,5 @@ public class Mitarbeiter {
     public String toString(){
         return ToStringBuilder.reflectionToString(this);
     }
-
-
 
 }

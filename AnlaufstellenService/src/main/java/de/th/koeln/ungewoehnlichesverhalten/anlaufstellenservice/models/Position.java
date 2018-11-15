@@ -1,11 +1,13 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
+@NoArgsConstructor
 public class Position {
 
     private double latitude;
@@ -15,6 +17,7 @@ public class Position {
         latitude = lat;
         longitude = lon;
     }
+
 
     double getLatitude() {
         return latitude;

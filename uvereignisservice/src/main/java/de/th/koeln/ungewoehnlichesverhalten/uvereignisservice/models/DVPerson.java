@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 
 @Embeddable
-class DVPerson {
+public class DVPerson {
 
     private long dpId;
 
@@ -16,25 +16,25 @@ class DVPerson {
     private Position position;
 
 
-    byte[] getBild() {
+    public byte[] getBild() {
         return bild;
     }
 
-    void setBild(byte[] image) { this.bild = image; }
+    public void setBild(byte[] image) { this.bild = image; }
 
-    Position getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    void setPosition(Position position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
-    long getId() {
+    public long getId() {
         return dpId;
     }
 
-    void setId(long id) {
+    public void setId(long id) {
         this.dpId = id;
     }
 

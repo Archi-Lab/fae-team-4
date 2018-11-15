@@ -22,45 +22,45 @@ public class UVEreignis {
 
     private Dankenachricht dankenachricht;
 
-    long getId() {
+    public long getId() {
         return id;
     }
 
-    Date getZeitstempel() {
+    public Date getZeitstempel() {
         return zeitstempel;
     }
 
-    void setZeitstempel(Date timestamp) {
+    public  void setZeitstempel(Date timestamp) {
         this.zeitstempel = timestamp;
     }
 
-    DVPerson getDVPerson() {
+    public DVPerson getDVPerson() {
         return dvPerson;
     }
 
-    void setDVPerson(DVPerson dp) {
+    public void setDVPerson(DVPerson dp) {
         this.dvPerson = dp;
     }
 
-    Sprachnachricht getSprachnachricht() {
+    public Sprachnachricht getSprachnachricht() {
         return sprachnachricht;
     }
 
-    void setSprachnachricht(Sprachnachricht sprachnachricht) {
+    public void setSprachnachricht(Sprachnachricht sprachnachricht) {
         this.sprachnachricht = sprachnachricht;
     }
 
-    Dankenachricht getDankenachricht() {
+    public Dankenachricht getDankenachricht() {
         return dankenachricht;
     }
 
-    void setDankenachricht(Dankenachricht dankenachricht) {
+    public void setDankenachricht(Dankenachricht dankenachricht) {
         this.dankenachricht = dankenachricht;
     }
 
     @Override
     public String toString(){
-        return ToStringBuilder.reflectionToString(this);
+        return this.zeitstempel + " - " + this.dvPerson;
     }
 }
 

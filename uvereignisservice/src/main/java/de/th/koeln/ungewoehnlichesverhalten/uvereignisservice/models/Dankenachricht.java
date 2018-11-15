@@ -10,11 +10,11 @@ public class Dankenachricht {
 
     Dankenachricht(){ }
 
-    Dankenachricht(String nachricht){
+    public Dankenachricht(String nachricht){
         this.nachricht = nachricht;
     }
 
-    String getNachricht() {
+    public String getNachricht() {
         return nachricht;
     }
 

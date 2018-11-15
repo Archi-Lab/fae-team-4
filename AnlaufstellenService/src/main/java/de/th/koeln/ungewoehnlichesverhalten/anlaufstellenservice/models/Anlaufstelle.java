@@ -1,11 +1,13 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class Anlaufstelle {
 
     @Id

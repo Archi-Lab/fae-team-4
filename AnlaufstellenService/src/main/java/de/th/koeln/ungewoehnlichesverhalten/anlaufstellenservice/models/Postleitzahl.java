@@ -1,8 +1,11 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
+@NoArgsConstructor
 public class Postleitzahl {
 
     private String mZipCode;
@@ -10,8 +13,6 @@ public class Postleitzahl {
     Postleitzahl(String zipCode){
         mZipCode = zipCode;
     }
-
-    Postleitzahl() { }
 
     public String getPLZ() {
         return mZipCode;

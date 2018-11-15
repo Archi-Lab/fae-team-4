@@ -11,18 +11,18 @@ public class Position {
 
     Position(){   }
 
-    Position(double lat, double lon){
+    public Position(double lat, double lon){
         latitude = lat;
         longitude = lon;
     }
 
-    double getLatitude() { return latitude; }
+    public double getLatitude() { return latitude; }
 
-    void setLatitude(double latitude) { this.latitude = latitude; }
+    public void setLatitude(double latitude) { this.latitude = latitude; }
 
-    double getLongitude() { return longitude; }
+    public double getLongitude() { return longitude; }
 
-    void setLongitude(double longitude) { this.longitude = longitude; }
+    public void setLongitude(double longitude) { this.longitude = longitude; }
 
     @Override
     public String toString(){
