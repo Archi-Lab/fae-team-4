@@ -1,13 +1,13 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 public class Anlaufstelle {
 
     @Id
@@ -21,6 +21,11 @@ public class Anlaufstelle {
     private Adresse adresse;
     private Postleitzahl postleitzahl;
     private String stadt;
+
+    public Anlaufstelle() {
+        // TODO generate Position based on address?
+        this.setPosition(new Position(0.0, 0.0));
+    }
 
     public Adresse getAdresse() {
         return adresse;
@@ -50,7 +55,7 @@ public class Anlaufstelle {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

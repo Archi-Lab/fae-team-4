@@ -7,32 +7,27 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.Embeddable;
 
 @Embeddable
-@NoArgsConstructor
 public class Position {
 
-    private double latitude;
-    private double longitude;
+    private final double latitude;
+    private final double longitude;
 
-    void setKoordinaten(double lat, double lon){
+    public Position() {
+        this.latitude = 0.0;
+        this.longitude = 0.0;
+    }
+
+    public Position(double lat, double lon) {
         latitude = lat;
         longitude = lon;
     }
-
 
     double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
-    }
-
     double getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
     }
 
     @Override

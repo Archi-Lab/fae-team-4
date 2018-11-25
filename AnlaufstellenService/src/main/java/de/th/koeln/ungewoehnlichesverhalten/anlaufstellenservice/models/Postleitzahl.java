@@ -10,7 +10,7 @@ public class Postleitzahl {
 
     private String mZipCode;
 
-    Postleitzahl(String zipCode){
+    public Postleitzahl(String zipCode){
         mZipCode = zipCode;
     }
 
