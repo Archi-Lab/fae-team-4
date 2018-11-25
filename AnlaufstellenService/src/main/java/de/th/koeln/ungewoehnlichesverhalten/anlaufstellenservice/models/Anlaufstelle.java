@@ -80,11 +80,11 @@ public class Anlaufstelle {
         this.position = position;
     }
 
-    List<Mitarbeiter> getMitarbeiterListe() {
+    public List<Mitarbeiter> getMitarbeiterListe() {
         return mitarbeiterListe;
     }
 
-    void setMitarbeiterListe(List<Mitarbeiter> mitarbeiterListe) {
+    public void setMitarbeiterListe(List<Mitarbeiter> mitarbeiterListe) {
         this.mitarbeiterListe = mitarbeiterListe;
     }
 }

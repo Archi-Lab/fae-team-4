@@ -1,24 +1,30 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 public class Mitarbeiter {
 
     @ManyToOne
     @JoinColumn(name="anlaufstelle_id", nullable=false)
     private Anlaufstelle anlaufstelle;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
 
-    private String vorname;
-    private String name;
+    private final String vorname;
+    private final String name;
+
+    public Mitarbeiter(String vorname, String nachname) {
+        this.vorname = vorname;
+        this.name = nachname;
+    }
 
 
     public long getId() {
@@ -33,16 +39,8 @@ public class Mitarbeiter {
         return vorname;
     }
 
-    void setVorname(String surname) {
-        this.vorname = surname;
-    }
-
     public String getName() {
         return name;
-    }
-
-    void setName(String name) {
-        this.name = name;
     }
 
     @Override

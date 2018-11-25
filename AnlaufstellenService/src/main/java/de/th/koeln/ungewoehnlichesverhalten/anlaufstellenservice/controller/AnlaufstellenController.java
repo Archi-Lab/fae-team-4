@@ -1,9 +1,11 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.controller;
 
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.Anlaufstelle;
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.Mitarbeiter;
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.repository.AnlaufstelleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.expression.spel.ast.BooleanLiteral;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -44,15 +46,35 @@ public class AnlaufstellenController {
     }
 
     /**
-     * GET
-     * @param id
+     * GET Anlaufstelle by id
+     * @param aid
      * @return
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAnlaufstelle(@PathVariable("id") long id) {
-        final Optional<Anlaufstelle> anlaufstelle = this.anlaufstelleRepository.findById(id);
+    public ResponseEntity<?> getAnlaufstelle(@PathVariable("id") long aid) {
+        final Optional<Anlaufstelle> anlaufstelle = this.anlaufstelleRepository.findById(aid);
         Resource<Optional<Anlaufstelle>> anlaufstelleResource = new Resource<>(anlaufstelle);
-        anlaufstelleResource.add(linkTo(methodOn(AnlaufstellenController.class).getAnlaufstelle(id)).withSelfRel());
+        anlaufstelleResource.add(linkTo(methodOn(AnlaufstellenController.class).getAnlaufstelle(aid)).withSelfRel());
         return ResponseEntity.ok(anlaufstelleResource);
     }
+
+    //TODO POST /anlaufstellen
+
+    //TODO PUT /anlaufstellen/{id}
+
+    //TODO DELETE /anlaufstellen/{id}
+
+    @GetMapping("/{aid}/mitarbeiter")
+    public ResponseEntity<?> getAnlaufstellenMitarbeiter(@PathVariable("aid") long aid) {
+        final Iterable<Mitarbeiter> mitarbeiter = this.anlaufstelleRepository.findById(aid).get().getMitarbeiterListe();
+        Resources<Mitarbeiter> mitarbeiterResource = new Resources<>(mitarbeiter);
+        mitarbeiterResource.add(linkTo(methodOn(AnlaufstellenController.class).getAnlaufstellenMitarbeiter(aid)).withSelfRel());
+        return ResponseEntity.ok(mitarbeiterResource);
+    }
+
+    //TODO POST /anlaufstellen/{aId}/mitarbeiter
+
+    //TODO PUT /anlaufstellen/{aId}/mitarbeiter/{mId}
+
+    //TODO DELETE /anlaufstellen/{aId}/mitarbeiter/{mId}
 }
