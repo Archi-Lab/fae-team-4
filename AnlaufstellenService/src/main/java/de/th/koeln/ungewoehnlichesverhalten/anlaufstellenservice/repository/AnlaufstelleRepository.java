@@ -13,5 +13,4 @@ public interface AnlaufstelleRepository extends CrudRepository<Anlaufstelle, Lon
     Iterable<Anlaufstelle> findByPosition(Position position);
     Iterable<Anlaufstelle> findByStadt(String cityName);
     Iterable<Anlaufstelle> findByPostleitzahl(Postleitzahl postleitzahl);
-
 }
