@@ -87,4 +87,12 @@ public class Anlaufstelle {
     public void setMitarbeiterListe(List<Mitarbeiter> mitarbeiterListe) {
         this.mitarbeiterListe = mitarbeiterListe;
     }
+
+    public void addMitarbeiter(Mitarbeiter mitarbeiter) {
+        mitarbeiterListe.add(mitarbeiter);
+    }
+
+    public void removeMitarbeiter(long mid) {
+        mitarbeiterListe.remove(mid);
+    }
 }
