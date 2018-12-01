@@ -34,23 +34,23 @@ public class AnlaufstelleTest {
         anlaufstelle.setName("Penny");
 
         Position position = new Position();
-        position.setKoordinaten(50.192, 7.65);
+      //  position.setKoordinaten(50.192, 7.65);
         anlaufstelle.setPosition(position);
         anlaufstelle.setStadt("Köln");
         anlaufstelle.setPostleitzahl(new Postleitzahl("51061"));
         anlaufstelle.setAdresse(new Adresse("Hohe Straße",  "13"));
 
-        Mitarbeiter mitarbeiter = new Mitarbeiter();
-        mitarbeiter.setVorname("Peter");
-        mitarbeiter.setName("Müller");
+      //  Mitarbeiter mitarbeiter = new Mitarbeiter();
+    //    mitarbeiter.setVorname("Peter");
+      //  mitarbeiter.setName("Müller");
 
-        Mitarbeiter mitarbeiter1 = new Mitarbeiter();
-        mitarbeiter1.setVorname("Max");
-        mitarbeiter1.setName("Mustermann");
+      //  Mitarbeiter mitarbeiter1 = new Mitarbeiter();
+     //   mitarbeiter1.setVorname("Max");
+     //   mitarbeiter1.setName("Mustermann");
 
         ArrayList<Mitarbeiter> mitarbeiterArrayList = new ArrayList<>();
-        mitarbeiterArrayList.add(mitarbeiter);
-        mitarbeiterArrayList.add(mitarbeiter1);
+   //     mitarbeiterArrayList.add(mitarbeiter);
+   //     mitarbeiterArrayList.add(mitarbeiter1);
 
         anlaufstelle.setMitarbeiterListe(mitarbeiterArrayList);
 
