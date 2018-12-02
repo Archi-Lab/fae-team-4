@@ -51,7 +51,7 @@ public class Anlaufstelle {
         this.stadt = cityName;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -72,7 +72,7 @@ public class Anlaufstelle {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    Position getPosition() {
+    public Position getPosition() {
         return position;
     }
 
