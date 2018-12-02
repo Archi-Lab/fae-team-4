@@ -1,10 +1,9 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,8 +15,8 @@ public class Anlaufstelle {
     private String name;
     @Embedded
     private Position position;
-    @OneToMany(mappedBy="anlaufstelle")
-    private List<Mitarbeiter> mitarbeiterListe;
+    @OneToMany(mappedBy="anlaufstelle", fetch = FetchType.EAGER)
+    private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
     private Adresse adresse;
     private Postleitzahl postleitzahl;
     private String stadt;
@@ -80,19 +79,15 @@ public class Anlaufstelle {
         this.position = position;
     }
 
-    public List<Mitarbeiter> getMitarbeiterListe() {
-        return mitarbeiterListe;
-    }
-
-    public void setMitarbeiterListe(List<Mitarbeiter> mitarbeiterListe) {
-        this.mitarbeiterListe = mitarbeiterListe;
+    public List<Mitarbeiter> getMitarbeiter() {
+        return mitarbeiter;
     }
 
     public void addMitarbeiter(Mitarbeiter mitarbeiter) {
-        mitarbeiterListe.add(mitarbeiter);
+        this.mitarbeiter.add(mitarbeiter);
     }
 
     public void removeMitarbeiter(long mid) {
-        mitarbeiterListe.remove(mid);
+        mitarbeiter.remove(mid);
     }
 }

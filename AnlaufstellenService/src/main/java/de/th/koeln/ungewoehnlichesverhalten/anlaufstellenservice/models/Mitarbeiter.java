@@ -9,21 +9,26 @@ import javax.persistence.*;
 @Entity
 public class Mitarbeiter {
 
-    @ManyToOne
-    @JoinColumn(name="anlaufstelle_id", nullable=false)
-    private Anlaufstelle anlaufstelle;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
 
-    private final String vorname;
-    private final String name;
+    @ManyToOne
+    @JoinColumn(name="anlaufstelle_id", nullable=false)
+    private Anlaufstelle anlaufstelle;
+
+    @Column(nullable = false)
+    private String vorname;
+    @Column(nullable = false)
+    private String nachname;
+
+    public Mitarbeiter() {
+
+    }
 
     public Mitarbeiter(String vorname, String nachname) {
         this.vorname = vorname;
-        this.name = nachname;
+        this.nachname = nachname;
     }
 
 
@@ -39,8 +44,8 @@ public class Mitarbeiter {
         return vorname;
     }
 
-    public String getName() {
-        return name;
+    public String getNachname() {
+        return nachname;
     }
 
     @Override

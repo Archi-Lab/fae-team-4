@@ -108,7 +108,7 @@ public class AnlaufstellenController {
      */
     @GetMapping("/{aid}/mitarbeiter")
     public ResponseEntity<?> getAnlaufstellenMitarbeiter(@PathVariable("aid") long aid) {
-        final Iterable<Mitarbeiter> mitarbeiter = this.anlaufstelleRepository.findById(aid).get().getMitarbeiterListe();
+        final Iterable<Mitarbeiter> mitarbeiter = this.anlaufstelleRepository.findById(aid).get().getMitarbeiter();
         Resources<Mitarbeiter> mitarbeiterResource = new Resources<>(mitarbeiter);
         mitarbeiterResource.add(linkTo(methodOn(AnlaufstellenController.class).getAnlaufstellenMitarbeiter(aid)).withSelfRel());
         LOGGER.info("GET Mitarbeiter für Anlaufstelle {}.", aid);

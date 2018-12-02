@@ -24,19 +24,13 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     public void onApplicationEvent(ContextRefreshedEvent event) {
         List<Anlaufstelle> anlaufstellen = new ArrayList<>();
         Postleitzahl plzGummersbach = new Postleitzahl("51643");
-        List<Mitarbeiter> sampleMitarbeiterListe= new ArrayList<>();
-        sampleMitarbeiterListe.add(new Mitarbeiter("Max", "Mustermann"));
-        sampleMitarbeiterListe.add(new Mitarbeiter("Erika", "Mustermann"));
-        sampleMitarbeiterListe.add(new Mitarbeiter("Erik", "Mustermann"));
-        sampleMitarbeiterListe.add(new Mitarbeiter("Petra", "Mustermann"));
-
 
         Anlaufstelle as1 = new Anlaufstelle();
         as1.setName("TH Köln, Campus Gummersbach");
         as1.setAdresse(new Adresse("Steinmüllerallee", "1"));
         as1.setPostleitzahl(plzGummersbach);
         as1.setStadt("Gummersbach");
-        as1.setMitarbeiterListe(sampleMitarbeiterListe);
+        as1.addMitarbeiter(new Mitarbeiter("Max", "Mustermann"));
         this.anlaufstelleRepository.save(as1);
 
         Anlaufstelle as2 = new Anlaufstelle();
@@ -44,7 +38,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as2.setAdresse(new Adresse("Steinmüllerallee", "5"));
         as2.setPostleitzahl(plzGummersbach);
         as2.setStadt("Gummersbach");
-        as2.setMitarbeiterListe(sampleMitarbeiterListe);
+        as2.addMitarbeiter(new Mitarbeiter("Erika", "Mustermann"));
         this.anlaufstelleRepository.save(as2);
 
         Anlaufstelle as3 = new Anlaufstelle();
@@ -52,7 +46,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as3.setAdresse(new Adresse("Heiner-Brand-Platz", "1"));
         as3.setPostleitzahl(plzGummersbach);
         as3.setStadt("Gummersbach");
-        as3.setMitarbeiterListe(sampleMitarbeiterListe);
+        as3.addMitarbeiter(new Mitarbeiter("Erik", "Mustermann"));
         this.anlaufstelleRepository.save(as3);
 
         Anlaufstelle as4 = new Anlaufstelle();
@@ -60,7 +54,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as4.setAdresse(new Adresse("Hindenburgstraße", "21-25"));
         as4.setPostleitzahl(plzGummersbach);
         as4.setStadt("Gummersbach");
-        as4.setMitarbeiterListe(sampleMitarbeiterListe);
+        as4.addMitarbeiter(new Mitarbeiter("Petra", "Mustermann"));
         this.anlaufstelleRepository.save(as4);
     }
 }
