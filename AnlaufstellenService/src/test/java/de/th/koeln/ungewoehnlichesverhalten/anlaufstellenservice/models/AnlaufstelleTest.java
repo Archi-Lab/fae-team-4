@@ -52,7 +52,7 @@ public class AnlaufstelleTest {
    //     mitarbeiterArrayList.add(mitarbeiter);
    //     mitarbeiterArrayList.add(mitarbeiter1);
 
-        anlaufstelle.setMitarbeiterListe(mitarbeiterArrayList);
+        anlaufstelle.setMitarbeiter(mitarbeiterArrayList);
 
         Anlaufstelle anlaufstelleSaved = anlaufstelleRepository.save(anlaufstelle);
 
@@ -66,7 +66,7 @@ public class AnlaufstelleTest {
         assertEquals(position.getLongitude(), anlaufstelleSaved.getPosition().getLongitude(), 0);
         assertEquals(anlaufstelle.getAdresse().getStrasse(), anlaufstelleSaved.getAdresse().getStrasse());
         assertEquals(anlaufstelle.getStadt(), anlaufstelleSaved.getStadt());
-        assertThat(anlaufstelleSaved.getMitarbeiterListe(), IsIterableContainingInOrder.contains((mitarbeiterArrayList.toArray())));
+        assertThat(anlaufstelleSaved.getMitarbeiter(), IsIterableContainingInOrder.contains((mitarbeiterArrayList.toArray())));
 
         LOGGER.info("Anlaufstelle was saved:");
         LOGGER.info(anlaufstelleSaved.toString());

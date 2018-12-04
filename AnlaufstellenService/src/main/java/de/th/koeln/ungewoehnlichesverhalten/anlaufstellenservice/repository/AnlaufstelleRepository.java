@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AnlaufstelleRepository extends CrudRepository<Anlaufstelle, Long> {
-
     Iterable<Anlaufstelle> findByName(String name);
     Iterable<Anlaufstelle> findByPosition(Position position);
     Iterable<Anlaufstelle> findByStadt(String cityName);

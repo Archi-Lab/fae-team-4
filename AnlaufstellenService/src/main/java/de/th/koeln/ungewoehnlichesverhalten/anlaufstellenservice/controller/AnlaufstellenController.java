@@ -80,13 +80,14 @@ public class AnlaufstellenController {
      */
     @PutMapping("/{aid}")
     public ResponseEntity<?> putAnlaufstelle(@PathVariable("aid") long aid, @RequestBody Anlaufstelle anlaufstelle) {
-       Optional<Anlaufstelle> optionalAnlaufstelle = anlaufstelleRepository.findById(aid);
-       if(!optionalAnlaufstelle.isPresent()) {
-          LOGGER.info("Anlaufstelle {} nicht gefunden.", aid);
-          return ResponseEntity.notFound().build();
-       }
-       anlaufstelle.setId(aid);
-       return new ResponseEntity<>(anlaufstelleRepository.save(anlaufstelle), HttpStatus.ACCEPTED);
+        LOGGER.info("PUT Anlaufstelle {}.", aid);
+        Optional<Anlaufstelle> optionalAnlaufstelle = anlaufstelleRepository.findById(aid);
+        if(!optionalAnlaufstelle.isPresent()) {
+           LOGGER.info("Anlaufstelle {} nicht gefunden.", aid);
+           return ResponseEntity.notFound().build();
+        }
+        anlaufstelle.setId(aid);
+        return new ResponseEntity<>(anlaufstelleRepository.save(anlaufstelle), HttpStatus.ACCEPTED);
     }
 
     /**

@@ -17,6 +17,7 @@ public class Anlaufstelle {
     private Position position;
     @OneToMany(mappedBy="anlaufstelle", fetch = FetchType.EAGER)
     private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
+    @Embedded
     private Adresse adresse;
     private Postleitzahl postleitzahl;
     private String stadt;
@@ -71,7 +72,7 @@ public class Anlaufstelle {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    public Position getPosition() {
+    Position getPosition() {
         return position;
     }
 
