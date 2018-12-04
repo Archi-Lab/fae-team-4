@@ -34,7 +34,7 @@ public class UVEreignisController {
      * GET auf alle UVEreignisse
      * @return
      */
-    @GetMapping()
+    @GetMapping(path = "/uvereignisse")
     public ResponseEntity<?> getUVEreignisse() {
         final Iterable<UVEreignis> uvEreignis = this.uvEreignisRepository.findAll();
         Resources<UVEreignis> resources = new Resources<>(uvEreignis);

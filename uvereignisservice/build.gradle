@@ -7,7 +7,6 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		compile "org.springframework.data:spring-data-rest-hal-browser"
 	}
 }
 
