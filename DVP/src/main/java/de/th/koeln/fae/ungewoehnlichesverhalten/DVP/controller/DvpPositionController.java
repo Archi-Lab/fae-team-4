@@ -3,6 +3,7 @@ package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.controller;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.CustomDvpRepository;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.DvpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-import java.util.OptionalLong;
+import java.util.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -25,11 +25,13 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class DvpPositionController {
 
     private final DvpRepository dvpRepository;
+    private final CustomDvpRepository customDvpRepository;
     private long erdradius = 6371;
 
     @Autowired
-    public DvpPositionController( DvpRepository dvpRepository) {
+    public DvpPositionController( DvpRepository dvpRepository, CustomDvpRepository customDvpRepository) {
         this.dvpRepository = dvpRepository;
+        this.customDvpRepository = customDvpRepository;
     }
 
     @GetMapping()
@@ -55,46 +57,19 @@ public class DvpPositionController {
         return  ResponseEntity.ok(resource);
     }
 
-    @GetMapping("/filter")
+    @GetMapping("filter")
     public ResponseEntity<?> getDVPFilter(@RequestParam("lat") long lat,
                                           @RequestParam("lon") long lon,
-                                          @RequestParam("radius") OptionalLong rad)
+                                          @RequestParam("radius") long radius)
     {
-        // Beispiel: http://localhost:8081/dvps/filter?lat=1&lon=2&radius=10
+        // Beispiel: http://localhost:8081/dvps?lat=1&lon=2&radius=10
+        final Iterable<DVP> dvps= customDvpRepository.findAllByUmkreissuche(lat, lon, radius);
 
-        // TODO Dummy rauswerfen
-        if(rad.isPresent()){
+        Resources<DVP> resources = new Resources<>(dvps);
+        resources.add(linkTo(methodOn(DvpPositionController.class).getDVPFilter(lat, lon, radius)).withSelfRel());
 
-            long radius = rad.getAsLong();
-
-            // latitude Grenzen
-            double maxLat = lat + Math.toDegrees(radius/erdradius);
-            double minLat = lat - Math.toDegrees(radius/erdradius);
-
-            // longitude Grenzen
-            double maxLon = lon + Math.toDegrees(radius/erdradius/Math.cos(Math.toRadians(lat)));
-            double minLon = lon - Math.toDegrees(radius/erdradius/Math.cos(Math.toRadians(lat)));
-
-            // todo filter zuende
-
-        }
-        else {
-
-            // todo kein Radius wurde angegeben, nur für die bestimmte lon und lat suchen
-
-        }
-
-        // Alt
-        final DVP dvp = new DVP(rad.getAsLong());
-
-        dvp.AddAufenthaltsort(new Aufenthaltsort(new Date(), new Position(lat, lon)));
-
-        Resource<DVP> resource = new Resource<>(dvp);
-
-        // todo: Filtern
-
-        resource.add(linkTo(methodOn(DvpPositionController.class).getDVPFilter(lat, lon, rad)).withSelfRel());
-
-        return  ResponseEntity.ok(resource);
+        return ResponseEntity.ok(resources);
     }
+
+
 }

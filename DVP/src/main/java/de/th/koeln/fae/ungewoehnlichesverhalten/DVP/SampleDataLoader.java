@@ -4,6 +4,7 @@ import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.AufenthalsorteRepository;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.CustomDvpRepository;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.DvpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -21,6 +22,8 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     @Autowired
     private AufenthalsorteRepository aufenthalsorteRepository;
 
+    @Autowired
+    private CustomDvpRepository customDvpRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
