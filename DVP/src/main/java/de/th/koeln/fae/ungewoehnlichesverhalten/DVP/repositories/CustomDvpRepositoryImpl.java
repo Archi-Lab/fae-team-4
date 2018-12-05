@@ -1,15 +1,13 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories;
 
-import com.sun.xml.internal.rngom.digested.DValuePattern;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.Collection;
 
 @Repository
 @Transactional(readOnly = true)
@@ -23,17 +21,19 @@ public class CustomDvpRepositoryImpl implements CustomDvpRepository {
         this.entityManager = entityManager;
     }
 
+    @Override
+    public Iterable<DVP> findAllByUmkreissuche(double lat, double lon, long radius) {
 
-    public Iterable<DVP> findAllByUmkreissuche(double lat, double lng, long radius){
-
-        final Query query = entityManager.createNativeQuery("SELECT d.* FROM DVP as d WHERE EXISTS (SELECT NULL FROM Aufenthaltsort as a WHERE a.DVP_id = d.id AND 6371 * (ACOS(SIN(RADIANS(d.Latitude)) * SIN(RADIANS(:1)) + COS(RADIANS(d.Latitude)) * COS(RADIANS(:1)) * COS(RADIANS(d.Longitude) - RADIANS(:2)))) < :3 )", DVP.class);
+        final Query query = entityManager.createNativeQuery("SELECT DISTINCT DVP.DVP_ID, DVP.NAME FROM DVP_AUFENTHALTSORTE da  LEFT JOIN AUFENTHALTSORT as a ON DVP_DVP_ID LEFT JOIN DVP ON DVP.DVP_ID = da.DVP_DVP_ID WHERE ( acos(sin(a.Latitude * 0.0175) * sin( ?  * 0.0175) + cos(a.Latitude * 0.0175) * cos( ?  * 0.0175) * cos(( ?  * 0.0175) - (a.Longitude * 0.0175))) * 6371 <= ? ) AND a.ID = da.AUFENTHALTSORTE_ID", DVP.class);
 
         query.setParameter(1, lat);
-        query.setParameter(2, lng);
-        query.setParameter(3, radius);
+        query.setParameter(2, lat);
+        query.setParameter(3, lon);
+        query.setParameter(4, radius);
+
+        System.out.println(query.toString());
 
 
         return query.getResultList();
     }
-
 }

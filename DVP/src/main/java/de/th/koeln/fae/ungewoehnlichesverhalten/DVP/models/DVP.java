@@ -16,6 +16,9 @@ public class DVP {
     @Id
     private long dvpId;
 
+    // TODO: only for testing
+    private String name;
+
     @OneToMany()
     private List<Aufenthaltsort> aufenthaltsorte;
 
@@ -32,5 +35,13 @@ public class DVP {
             throw new IllegalArgumentException("Ungültiger Ort");
 
         this.aufenthaltsorte.add(ort);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AufenthalsorteRepository extends CrudRepository<Aufenthaltsort, Long> {
+public interface AufenthaltsorteRepository extends CrudRepository<Aufenthaltsort, Long> {
 }

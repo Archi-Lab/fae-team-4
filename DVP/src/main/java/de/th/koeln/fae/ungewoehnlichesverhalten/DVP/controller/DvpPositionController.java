@@ -1,8 +1,6 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.controller;
 
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.CustomDvpRepository;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.DvpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.*;
-
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -24,31 +20,20 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @RequestMapping("/dvps")
 public class DvpPositionController {
 
-    private final DvpRepository dvpRepository;
-    private final CustomDvpRepository customDvpRepository;
-    private long erdradius = 6371;
+    private final DvpRepository mDVPRepo;
 
     @Autowired
-    public DvpPositionController( DvpRepository dvpRepository, CustomDvpRepository customDvpRepository) {
-        this.dvpRepository = dvpRepository;
-        this.customDvpRepository = customDvpRepository;
-    }
+    CustomDvpRepository mCustomDVPRepo;
 
-    @GetMapping()
-    public ResponseEntity<?> getDVPs(){
-        final Iterable<DVP> personList = this.dvpRepository.findAll();
-
-        Resources<DVP> resources = new Resources<>(personList);
-
-        resources.add(linkTo(methodOn(DvpPositionController.class).getDVPs()).withSelfRel());
-
-        return  ResponseEntity.ok(resources);
+    @Autowired
+    public DvpPositionController( DvpRepository dvpRepository) {
+        mDVPRepo = dvpRepository;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getDVP(@PathVariable("id") long id)
     {
-        final DVP dvp = this.dvpRepository.findById(id);
+        final DVP dvp = mDVPRepo.findById(id);
 
         Resource<DVP> resource = new Resource<>(dvp);
 
@@ -57,16 +42,22 @@ public class DvpPositionController {
         return  ResponseEntity.ok(resource);
     }
 
-    @GetMapping("filter")
-    public ResponseEntity<?> getDVPFilter(@RequestParam("lat") long lat,
-                                          @RequestParam("lon") long lon,
-                                          @RequestParam("radius") long radius)
+    @GetMapping()
+    public ResponseEntity<?> getDVPs(@RequestParam(required = false, defaultValue = "0") double lat,
+                                          @RequestParam(required = false, defaultValue = "0") double lon,
+                                          @RequestParam(required = false, defaultValue = "0") int radius)
     {
         // Beispiel: http://localhost:8081/dvps?lat=1&lon=2&radius=10
-        final Iterable<DVP> dvps= customDvpRepository.findAllByUmkreissuche(lat, lon, radius);
+        Iterable<DVP> dvps;
+        if(lat > 0 && lon > 0 && radius > 0) {
+            dvps = mCustomDVPRepo.findAllByUmkreissuche(lat, lon, radius);
+        }else {
+            dvps = mDVPRepo.findAll();
+
+        }
 
         Resources<DVP> resources = new Resources<>(dvps);
-        resources.add(linkTo(methodOn(DvpPositionController.class).getDVPFilter(lat, lon, radius)).withSelfRel());
+        resources.add(linkTo(methodOn(DvpPositionController.class).getDVPs(lat, lon, radius)).withSelfRel());
 
         return ResponseEntity.ok(resources);
     }

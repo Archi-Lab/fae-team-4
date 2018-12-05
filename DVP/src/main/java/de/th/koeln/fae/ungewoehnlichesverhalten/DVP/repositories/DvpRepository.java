@@ -9,6 +9,6 @@ public interface DvpRepository extends CrudRepository<DVP, Long> {
 
     @Override
     Iterable<DVP> findAll();
-
     DVP findById(long id);
+
 }
