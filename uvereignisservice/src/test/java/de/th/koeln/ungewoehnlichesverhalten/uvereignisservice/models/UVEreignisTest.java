@@ -23,49 +23,49 @@ public class UVEreignisTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(UVEreignisTest.class);
 
     @Autowired
-    private UVEreignisRepository eventRepository;
+    private UVEreignisRepository UVERepository;
 
     @Test
     public void createPersonExpectCreated(){
 
         final Position position = new Position(10, 20);
 
-        final DVPerson dp = new DVPerson();
-        dp.setId(5);
-        dp.setPosition(position);
-        dp.setBild(new byte[10]);
+        final DVPerson dvp = new DVPerson();
+        dvp.setId(5);
+        dvp.setPosition(position);
+        dvp.setBild(new byte[10]);
 
-        final UVEreignis event = new UVEreignis();
-        event.setDVPerson(dp);
-        event.setZeitstempel(new Date());
-        event.setSprachnachricht(new Sprachnachricht(new byte[5]));
-        event.setDankenachricht(new Dankenachricht("Answer"));
+        final UVEreignis uvEreignis = new UVEreignis();
+        uvEreignis.setDVPerson(dvp);
+        uvEreignis.setZeitstempel(new Date());
+        uvEreignis.setSprachnachricht(new Sprachnachricht(new byte[5]));
+        uvEreignis.setDankenachricht(new Dankenachricht("Answer"));
 
-        final UVEreignis savedEvent = eventRepository.save(event);
-        LOGGER.debug("saved event: " + savedEvent.toString());
+        final UVEreignis savedUVE = UVERepository.save(uvEreignis);
+        LOGGER.debug("saved uvEreignis: " + savedUVE.toString());
 
-        assertNotNull(savedEvent);
-        assertNotNull(savedEvent.getId());
-        assertEquals(event.getSprachnachricht().getSprachnachricht(), savedEvent.getSprachnachricht().getSprachnachricht());
-        assertEquals(event.getZeitstempel(), savedEvent.getZeitstempel());
-        assertEquals(event.getDankenachricht().getNachricht(), savedEvent.getDankenachricht().getNachricht());
+        assertNotNull(savedUVE);
+        assertNotNull(savedUVE.getId());
+        assertEquals(uvEreignis.getSprachnachricht().getSprachnachricht(), savedUVE.getSprachnachricht().getSprachnachricht());
+        assertEquals(uvEreignis.getZeitstempel(), savedUVE.getZeitstempel());
+        assertEquals(uvEreignis.getDankenachricht().getNachricht(), savedUVE.getDankenachricht().getNachricht());
 
 
-        final DVPerson savedDP = savedEvent.getDVPerson();
-        assertNotNull(savedDP);
-        assertEquals(dp.getId(), savedDP.getId());
-        assertEquals(dp.getBild(), savedDP.getBild());
-        LOGGER.debug("saved dv person: " + savedDP.toString());
+        final DVPerson savedDVP = savedUVE.getDVPerson();
+        assertNotNull(savedDVP);
+        assertEquals(dvp.getId(), savedDVP.getId());
+        assertEquals(dvp.getBild(), savedDVP.getBild());
+        LOGGER.debug("saved dv person: " + savedDVP.toString());
 
-        final Position savedPosition = savedDP.getPosition();
+        final Position savedPosition = savedDVP.getPosition();
         assertNotNull(savedPosition);
         assertEquals(position.getLatitude(), savedPosition.getLatitude(), 0.0);
         assertEquals(position.getLongitude(), savedPosition.getLongitude(), 0.0);
 
-        eventRepository.delete(savedEvent);
-        LOGGER.debug("deleted event: " + savedEvent.toString());
+        UVERepository.delete(savedUVE);
+        LOGGER.debug("deleted uvEreignis: " + savedUVE.toString());
 
-        assertNull(eventRepository.findById(1));
+        assertNull(UVERepository.findById(1));
     }
 }
 
