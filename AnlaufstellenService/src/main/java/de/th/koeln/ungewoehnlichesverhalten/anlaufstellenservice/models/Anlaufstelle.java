@@ -12,11 +12,14 @@ public class Anlaufstelle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @OneToMany
+    @JoinColumn(name = "anlaufstelle_id")
+    private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
+
     private String name;
     @Embedded
     private Position position;
-    @OneToMany(mappedBy="anlaufstelle", fetch = FetchType.EAGER)
-    private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
     @Embedded
     private Adresse adresse;
     private Postleitzahl postleitzahl;
@@ -84,11 +87,7 @@ public class Anlaufstelle {
         return mitarbeiter;
     }
 
-    public void addMitarbeiter(Mitarbeiter mitarbeiter) {
-        this.mitarbeiter.add(mitarbeiter);
-    }
-
-    public void removeMitarbeiter(long mid) {
-        mitarbeiter.remove(mid);
+    public void setMitarbeiter(List<Mitarbeiter> mitarbeiterListe) {
+        this.mitarbeiter = mitarbeiterListe;
     }
 }
