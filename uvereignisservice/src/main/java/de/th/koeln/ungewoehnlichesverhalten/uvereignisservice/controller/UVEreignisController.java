@@ -106,8 +106,8 @@ public class UVEreignisController {
      * DELETE auf bestimmtes UVEreignis (by ID)
      * @param eid ID des UVEreignis
      */
-    @DeleteMapping(path = "/uvereignisse/{eId}")
-    public ResponseEntity<?> deleteUVEreignis(@PathVariable("eId") long eid) {
+    @DeleteMapping(path = "/uvereignisse/{eid}")
+    public ResponseEntity<?> deleteUVEreignis(@PathVariable("eid") long eid) {
         LOGGER.info("DELETE UVEreignis {}.", eid);
         this.uvEreignisRepository.deleteById(eid);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -118,7 +118,7 @@ public class UVEreignisController {
      * @param eid ID des UVEreignis
      * @return
      */
-    @PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
+    /*@PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
     public ResponseEntity<?> postSprachnachricht(@PathVariable("eid") long eid, @RequestBody Sprachnachricht sprachnachricht) {
         LOGGER.info("POST Sprachnachricht zum UVEreignis {}", eid);
         Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(eid);
@@ -130,14 +130,14 @@ public class UVEreignisController {
             LOGGER.info("UVEreignis {} not found", eid);
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
     /**
      * Post einer Danke-Nachricht auf bestimmtes UVEreignis (by ID)
      * @param eid ID des UVEreignis
      * @return
      */
-    @PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
+    /*@PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
     public ResponseEntity<?> postDankenachricht(@PathVariable("eid") long eid, @RequestBody Dankenachricht dankenachricht) {
         LOGGER.info("POST Dankenachricht zum UVEreignis {}", eid);
         Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(eid);
@@ -149,12 +149,10 @@ public class UVEreignisController {
             LOGGER.info("UVEreignis {} not found", eid);
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
     /**
      * GET Dankenachricht des UVE by id
-     * @param eid ID des UVEreignis
-     * @return
      */
     //Ein UVE hat doch nur eine DN?
     /*@GetMapping(path = "/uvereignisse/{eid}/danke")
