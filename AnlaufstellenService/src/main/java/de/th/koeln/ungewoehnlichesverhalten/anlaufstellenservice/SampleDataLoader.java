@@ -6,6 +6,7 @@ import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.Anlaufst
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.Mitarbeiter;
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.Postleitzahl;
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.repository.AnlaufstelleRepository;
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.repository.MitarbeiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,8 +21,20 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     @Autowired
     private AnlaufstelleRepository anlaufstelleRepository;
 
+    @Autowired
+    private MitarbeiterRepository mitarbeiterRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        Mitarbeiter m1 = new Mitarbeiter("Max", "Mustermann");
+        mitarbeiterRepository.save(m1);
+        Mitarbeiter m2 = new Mitarbeiter("Erika", "Mustermann");
+        mitarbeiterRepository.save(m2);
+        Mitarbeiter m3 = new Mitarbeiter("Heinz", "Mustermann");
+        mitarbeiterRepository.save(m3);
+        Mitarbeiter m4 = new Mitarbeiter("Erik", "Mustermann");
+        mitarbeiterRepository.save(m4);
+
         List<Anlaufstelle> anlaufstellen = new ArrayList<>();
         Postleitzahl plzGummersbach = new Postleitzahl("51643");
 
@@ -30,7 +43,6 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as1.setAdresse(new Adresse("Steinmüllerallee", "1"));
         as1.setPostleitzahl(plzGummersbach);
         as1.setStadt("Gummersbach");
-        as1.addMitarbeiter(new Mitarbeiter("Max", "Mustermann"));
         this.anlaufstelleRepository.save(as1);
 
         Anlaufstelle as2 = new Anlaufstelle();
@@ -38,7 +50,6 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as2.setAdresse(new Adresse("Steinmüllerallee", "5"));
         as2.setPostleitzahl(plzGummersbach);
         as2.setStadt("Gummersbach");
-        as2.addMitarbeiter(new Mitarbeiter("Erika", "Mustermann"));
         this.anlaufstelleRepository.save(as2);
 
         Anlaufstelle as3 = new Anlaufstelle();
@@ -46,7 +57,6 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as3.setAdresse(new Adresse("Heiner-Brand-Platz", "1"));
         as3.setPostleitzahl(plzGummersbach);
         as3.setStadt("Gummersbach");
-        as3.addMitarbeiter(new Mitarbeiter("Erik", "Mustermann"));
         this.anlaufstelleRepository.save(as3);
 
         Anlaufstelle as4 = new Anlaufstelle();
@@ -54,7 +64,6 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as4.setAdresse(new Adresse("Hindenburgstraße", "21-25"));
         as4.setPostleitzahl(plzGummersbach);
         as4.setStadt("Gummersbach");
-        as4.addMitarbeiter(new Mitarbeiter("Petra", "Mustermann"));
         this.anlaufstelleRepository.save(as4);
     }
 }
