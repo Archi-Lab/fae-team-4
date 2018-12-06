@@ -26,11 +26,15 @@ public class UVEreignis {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Date getZeitstempel() {
         return zeitstempel;
     }
 
-    public  void setZeitstempel(Date timestamp) {
+    public void setZeitstempel(Date timestamp) {
         this.zeitstempel = timestamp;
     }
 

@@ -4,9 +4,11 @@ import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.UVEreignis;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UVEreignisRepository extends CrudRepository<UVEreignis, Long> {
     @Override
     Iterable<UVEreignis> findAll();
-    Iterable<UVEreignis> findById(long id);
+    Optional<UVEreignis> findById(long id);
 }
