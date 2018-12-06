@@ -1,21 +1,23 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceProcessor;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.UVEreignis;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.Dankenachricht;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.Sprachnachricht;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -24,6 +26,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class UVEreignisController {
 
     private final UVEreignisRepository uvEreignisRepository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(UVEreignisController.class);
 
     @Autowired
     public UVEreignisController(UVEreignisRepository uvEreignisRepository) {
@@ -36,17 +39,27 @@ public class UVEreignisController {
      */
     @GetMapping(path = "/uvereignisse")
     public ResponseEntity<?> getUVEreignisse() {
-        final Iterable<UVEreignis> uvEreignis = this.uvEreignisRepository.findAll();
-        Resources<UVEreignis> resources = new Resources<>(uvEreignis);
+        final Iterable<UVEreignis> uvEreignisse = this.uvEreignisRepository.findAll();
+        Resources<UVEreignis> resources = new Resources<>(uvEreignisse);
         resources.add(linkTo(methodOn(UVEreignisController.class).getUVEreignisse()).withSelfRel());
         return ResponseEntity.ok(resources);
     }
 
-    //TODO: POST uvereignisse
+    /**
+     * POST UVEreignisse
+     * @param uvEreignis
+     * @return
+     */
+    @PostMapping()
+    public ResponseEntity<?> postUVEreignis(@RequestBody UVEreignis uvEreignis){
+        LOGGER.info("POST UVEreignis");
+        // hier setAnlaufstelle des UVEreignisses?
+        return new ResponseEntity<>(uvEreignisRepository.save(uvEreignis), HttpStatus.CREATED);
+    }
 
     /**
      * GET auf bestimmtes UVEreignis (by ID)
-     * @param eid
+     * @param eid ID des UVEreignis
      * @return
      */
     @GetMapping(path = "/uvereignisse/{eId}")
@@ -57,64 +70,104 @@ public class UVEreignisController {
         return ResponseEntity.ok(uvEreignisRessource);
     }
 
-    //TODO: PATCH/PUT /uvereignisse/{eId}
-    //TODO: PUT /uvereignisse/{eId}/senden
+    /**
+     * PUT UVEreignis by ID zum Updaten
+     * @param eid ID des UVEreignis
+     * @return
+     */
+    @PutMapping("/uvereignisse/{eid}")
+    public ResponseEntity<?> putUVEreignis(@PathVariable("eid") long eid, @RequestBody UVEreignis uvEreignis) {
+        Optional<UVEreignis> optionalUVEreignis = uvEreignisRepository.findById(eid);
+        if(!optionalUVEreignis.isPresent()) {
+            LOGGER.info("UVEreignis {} nicht gefunden.", eid);
+            return ResponseEntity.notFound().build();
+        }
+        uvEreignis.setId(eid);
+        return new ResponseEntity<>(uvEreignisRepository.save(uvEreignis), HttpStatus.ACCEPTED);
+    }
+
+    /**
+     * PUT UVEreignis by ID zum Senden
+     * @param eid ID des UVEreignis
+     * @return
+     */
+    @PutMapping("/uvereignisse/{eid}/senden")
+    public ResponseEntity<?> putUVEreignisSenden(@PathVariable("eid") long eid, @RequestBody UVEreignis uvEreignis) {
+        Optional<UVEreignis> optionalUVEreignis = uvEreignisRepository.findById(eid);
+        if(!optionalUVEreignis.isPresent()) {
+            LOGGER.info("UVEreignis {} nicht gefunden.", eid);
+            return ResponseEntity.notFound().build();
+        }
+        //setDVP (by Id) eigentlich
+        return new ResponseEntity<>(uvEreignisRepository.save(uvEreignis), HttpStatus.ACCEPTED);
+    }
 
     /**
      * DELETE auf bestimmtes UVEreignis (by ID)
-     * @param eid
+     * @param eid ID des UVEreignis
      */
     @DeleteMapping(path = "/uvereignisse/{eId}")
-    public void deleteUVEreignis(@PathVariable("eId") long eid) {
+    public ResponseEntity<?> deleteUVEreignis(@PathVariable("eId") long eid) {
+        LOGGER.info("DELETE UVEreignis {}.", eid);
         this.uvEreignisRepository.deleteById(eid);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     /**
      * Post einer Sprachnachricht auf bestimmtes UVEreignis (by ID)
+     * @param eid ID des UVEreignis
+     * @return
      */
-    /*@PostMapping(path = "/uvereignisse/{eId}/sprachnachricht")
-    public ResponseEntity<?> postSprachnachricht(@PathVariable("eId") Long id) {
-        final Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(id);
+    @PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
+    public ResponseEntity<?> postSprachnachricht(@PathVariable("eid") long eid, @RequestBody Sprachnachricht sprachnachricht) {
+        LOGGER.info("POST Sprachnachricht zum UVEreignis {}", eid);
+        Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(eid);
         if (optionalUVEreignis.isPresent()) {
-            final UVEreignis uvEreignis = optionalUVEreignis.get();
-            //final Sprachnachricht sprachnachricht = uvEreignis.getSprachnachricht();
-            //Macht irgendwie keinen Sinn, weil durch das ändern des UVE die Sprachnachricht ja automatisch geändert wird
-            try {
-                uvEreignis.setSprachnachricht(sprachnachricht); //zuerst get und hier setze ich sie dann wieder?
-                this.uvEreignisRepository.save(uvEreignis);
-                return ResponseEntity.ok(new Resource<>(uvEreignis));
-            } catch (Exception e) {
-                return ResponseEntity.badRequest().body(e.getMessage());
-            }
+            UVEreignis uvEreignis = optionalUVEreignis.get(); //nicht final?
+            uvEreignis.setSprachnachricht(sprachnachricht); //oder add-Methode?
+            return new ResponseEntity<>(uvEreignisRepository.save(uvEreignis), HttpStatus.CREATED);
         } else {
+            LOGGER.info("UVEreignis {} not found", eid);
             return ResponseEntity.notFound().build();
         }
-    }*/
+    }
 
     /**
      * Post einer Danke-Nachricht auf bestimmtes UVEreignis (by ID)
+     * @param eid ID des UVEreignis
+     * @return
      */
-    /*@PostMapping(path = "/uvereignisse/{eId}/danke")
-    public ResponseEntity<?> postDankenachricht(@PathVariable("eId") Long id) {
-        final Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(id);
+    @PostMapping(path = "/uvereignisse/{eid}/sprachnachricht")
+    public ResponseEntity<?> postDankenachricht(@PathVariable("eid") long eid, @RequestBody Dankenachricht dankenachricht) {
+        LOGGER.info("POST Dankenachricht zum UVEreignis {}", eid);
+        Optional<UVEreignis> optionalUVEreignis = this.uvEreignisRepository.findById(eid);
         if (optionalUVEreignis.isPresent()) {
-            final UVEreignis uvEreignis = optionalUVEreignis.get();
-            //final Dankenachricht dankenachricht = uvEreignis.getDankenachricht();
-            //Macht irgendwie keinen Sinn, weil durch das ändern des UVE die Dankenachricht ja automatisch geändert wird
-            try {
-                uvEreignis.setDankenachricht(dankenachricht); //zuerst get und hier setze ich sie dann wieder?
-                this.uvEreignisRepository.save(uvEreignis);
-                return ResponseEntity.ok(new Resource<>(uvEreignis));
-            } catch (Exception e) {
-                return ResponseEntity.badRequest().body(e.getMessage());
-            }
+            UVEreignis uvEreignis = optionalUVEreignis.get(); //nicht final?
+            uvEreignis.setDankenachricht(dankenachricht); //oder add-Methode?
+            return new ResponseEntity<>(uvEreignisRepository.save(uvEreignis), HttpStatus.CREATED);
         } else {
+            LOGGER.info("UVEreignis {} not found", eid);
             return ResponseEntity.notFound().build();
         }
-    }*/
+    }
 
+    /**
+     * GET Dankenachricht des UVE by id
+     * @param eid ID des UVEreignis
+     * @return
+     */
+    //Ein UVE hat doch nur eine DN?
+    /*@GetMapping(path = "/uvereignisse/{eid}/danke")
+    public ResponseEntity<?> getUVEreignisDankenachricht(@PathVariable("eid") long eid) {
+        final Optional<Dankenachricht> dankenachricht = this.uvEreignisRepository.findById(eid).get().getDankenachricht();
+        Resource<Optional<Dankenachricht>> dankenachrichtResource = new Resource<>(dankenachricht);
+        dankenachrichtResource.add(linkTo(methodOn(UVEreignisController.class).getUVEreignisDankenachricht(eid)).withSelfRel());
+        LOGGER.info("GET Mitarbeiter für Anlaufstelle {}.", eid);
+        return ResponseEntity.ok(dankenachrichtResource);
+    }*/ //Get Dankenachricht aus UVE
+
+    // Brauchen wir das? Oder gibt es eh nur eine DN pro UVE?
     //TODO: GET /uvereignisse/{eId}/danke/{dId}
-    //TODO: GET /uvereignisse/{eId}/danke
 
     @Bean
     public ResourceProcessor<Resource<UVEreignis>> UVEreignisProcessor() {
