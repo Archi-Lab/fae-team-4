@@ -1,5 +1,6 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -7,22 +8,15 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @Setter
+@Getter
 @NoArgsConstructor
 public class Adresse {
 
-    private String mStreet;
-    private String mNumber;
+    private String mStraße;
+    private String mHausnummer;
 
-    public Adresse(String street, String number){
-        mNumber = number;
-        mStreet = street;
-    }
-
-    public String getStrasse() {
-        return mStreet;
-    }
-
-    public String getNummer() {
-        return mNumber;
+    public Adresse(String straße, String hausnummer){
+        mHausnummer = hausnummer;
+        mStraße = straße;
     }
 }

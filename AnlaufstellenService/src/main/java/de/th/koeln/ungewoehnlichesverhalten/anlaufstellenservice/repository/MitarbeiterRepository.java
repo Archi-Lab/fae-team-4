@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @RepositoryRestResource(collectionResourceRel = "mitarbeiter", path = "mitarbeiter")
 public interface MitarbeiterRepository extends CrudRepository<Mitarbeiter, Long> {
-    Iterable<Mitarbeiter> findByVorname(String vorname);
-    Iterable<Mitarbeiter> findByNachname(String nachname);
+
 }
 

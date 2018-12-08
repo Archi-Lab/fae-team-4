@@ -9,8 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @RepositoryRestResource(collectionResourceRel = "anlaufstellen", path = "anlaufstellen")
 public interface AnlaufstelleRepository extends CrudRepository<Anlaufstelle, Long> {
-    Iterable<Anlaufstelle> findByName(String name);
-    Iterable<Anlaufstelle> findByPosition(Position position);
-    Iterable<Anlaufstelle> findByStadt(String cityName);
-    Iterable<Anlaufstelle> findByPostleitzahl(Postleitzahl postleitzahl);
+
 }
