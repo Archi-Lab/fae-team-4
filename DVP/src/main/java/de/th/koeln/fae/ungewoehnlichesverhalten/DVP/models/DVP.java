@@ -37,11 +37,4 @@ public class DVP {
         this.aufenthaltsorte.add(ort);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
