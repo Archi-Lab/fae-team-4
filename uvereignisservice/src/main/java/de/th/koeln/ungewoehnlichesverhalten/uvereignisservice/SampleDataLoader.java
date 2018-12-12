@@ -17,19 +17,20 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        final Position position = new Position(10, 20);
 
-        final DVPerson dp = new DVPerson();
-        dp.setId(5);
+        Position position = new Position(10, 20);
+
+        DVPerson dp = new DVPerson();
+        dp.setDpId(5);
         dp.setPosition(position);
         dp.setBild(new byte[10]);
 
-        final UVEreignis ereignis = new UVEreignis();
-        ereignis.setDVPerson(dp);
-        ereignis.setZeitstempel(new Date());
-        ereignis.setSprachnachricht(new Sprachnachricht(new byte[5]));
-        ereignis.setDankenachricht(new Dankenachricht("Answer"));
+        UVEreignis uve1 = new UVEreignis();
+        //uve1.setDVPerson(dp); Hier set auf DVPUVE
+        uve1.setZeitstempel(new Date());
+        uve1.setSprachnachricht(new Sprachnachricht(new byte[5]));
+        //uve1.setDankenachricht(new Dankenachricht("Answer")); Gibts nicht mehr --> Wird generiert, wenn UVE status = behoben
 
-        ereigbnisRepository.save(ereignis);
+        ereigbnisRepository.save(uve1);
     }
 }

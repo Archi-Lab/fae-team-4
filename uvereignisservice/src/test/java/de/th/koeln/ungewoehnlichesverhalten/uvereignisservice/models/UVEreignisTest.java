@@ -1,6 +1,5 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
-
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,15 +30,16 @@ public class UVEreignisTest {
         final Position position = new Position(10, 20);
 
         final DVPerson dvp = new DVPerson();
-        dvp.setId(5);
+        dvp.setDpId(5);
         dvp.setPosition(position);
         dvp.setBild(new byte[10]);
 
+        final DvpUve dvpuve = new DvpUve(); //TODO hier noch nen DVP rein machen
+
         final UVEreignis uvEreignis = new UVEreignis();
-        uvEreignis.setDVPerson(dvp);
+        uvEreignis.getDvpuveListe().add(dvpuve);
         uvEreignis.setZeitstempel(new Date());
         uvEreignis.setSprachnachricht(new Sprachnachricht(new byte[5]));
-        uvEreignis.setDankenachricht(new Dankenachricht("Answer"));
 
         final UVEreignis savedUVE = UVERepository.save(uvEreignis);
         LOGGER.debug("saved uvEreignis: " + savedUVE.toString());
@@ -48,12 +48,11 @@ public class UVEreignisTest {
         assertNotNull(savedUVE.getId());
         assertEquals(uvEreignis.getSprachnachricht().getSprachnachricht(), savedUVE.getSprachnachricht().getSprachnachricht());
         assertEquals(uvEreignis.getZeitstempel(), savedUVE.getZeitstempel());
-        assertEquals(uvEreignis.getDankenachricht().getNachricht(), savedUVE.getDankenachricht().getNachricht());
 
 
-        final DVPerson savedDVP = savedUVE.getDVPerson();
+        final DVPerson savedDVP = savedUVE.getDVPerson(); //TODO get DVPUVE Liste
         assertNotNull(savedDVP);
-        assertEquals(dvp.getId(), savedDVP.getId());
+        assertEquals(dvp.getDpId(), savedDVP.getDpId());
         assertEquals(dvp.getBild(), savedDVP.getBild());
         LOGGER.debug("saved dv person: " + savedDVP.toString());
 

@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
-public class Position {
+public class    Position {
 
     private final double latitude;
     private final double longitude;
