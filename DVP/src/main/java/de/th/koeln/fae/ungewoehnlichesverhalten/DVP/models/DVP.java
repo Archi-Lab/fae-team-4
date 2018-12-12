@@ -16,8 +16,9 @@ public class DVP {
     @Id
     private long dvpId;
 
-    // TODO: only for testing
-    private String name;
+    private String bildUrl;
+
+    private String trackerId;
 
     @OneToMany()
     private List<Aufenthaltsort> aufenthaltsorte;

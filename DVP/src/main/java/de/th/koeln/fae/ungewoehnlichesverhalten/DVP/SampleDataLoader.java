@@ -22,7 +22,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     @Autowired
     private AufenthaltsorteRepository aufenthaltsorteRepository;
 
-    private String[] names = {"Max", "Peter", "Maria", "Hans", "Frank"};
+    private String[] bildUrls = {"MaxURL", "PeterURL", "MariaURL", "HansURL", "FrankURL"};
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -30,7 +30,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
        for (int i = 1; i <= 5; i++)
        {
            DVP dvp = new DVP(i);
-           dvp.setName(names[i - 1]);
+           dvp.setBildUrl(bildUrls[i - 1]);
            this.dvpRepository.save(dvp);
 
            for (int x = 1; x <= 3; x++)
