@@ -22,6 +22,10 @@ public class Aufenthaltsort {
     @Embedded
     private Position position;
 
+    public Aufenthaltsort() {
+
+    }
+
     public Aufenthaltsort(Date timestamp, Position position) {
         this.timestamp = timestamp;
         this.position = position;

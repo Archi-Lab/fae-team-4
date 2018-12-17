@@ -23,11 +23,15 @@ public class DVP {
     @OneToMany()
     private List<Aufenthaltsort> aufenthaltsorte;
 
+    public DVP() {
+
+    }
+
     public DVP(long dvpId) {
         this.dvpId = dvpId;
     }
 
-    public void AddAufenthaltsort(Aufenthaltsort ort)
+    public void addAufenthaltsort(Aufenthaltsort ort)
     {
         if(this.aufenthaltsorte == null || this.aufenthaltsorte.isEmpty())
             this.aufenthaltsorte = new ArrayList<>();
@@ -38,4 +42,8 @@ public class DVP {
         this.aufenthaltsorte.add(ort);
     }
 
+    // Lombok does not work??
+    public void setBildUrl(String bildUrl) {
+        this.bildUrl = bildUrl;
+    }
 }
