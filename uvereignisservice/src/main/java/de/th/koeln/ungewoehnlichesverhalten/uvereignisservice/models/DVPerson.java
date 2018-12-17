@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 public class DVPerson {
-    private long dpId;
+    private long dvpId;
     private byte[] bild;
 
     @Embedded

@@ -17,31 +17,59 @@ public class UVEreignis {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
-    @JoinColumn(name = "uvereignis_id")
-    private List<DvpUve> dvpuveListe = new ArrayList<>();
+    //@OneToMany
+    //@JoinColumn(name = "uvereignis_id")
+    @ElementCollection
+    private List<DvpUve> dvpuves = new ArrayList<>();
 
     @Embedded
-    private Sprachnachricht sprachnachricht;
+    private Sprachnachricht sprachnachricht; // TODO Sprachnachricht nur im UVE oder DVP-UVE?
     private Date zeitstempel;
     private Status status;
+
 
     public UVEreignis(){
         this.status = Status.ERSTELLT;
     }
-    public void setStatus(Status status) { //Überschreibt automatisch den von LomBok generierten setter :)
+
+    public void setStatus(Status status) { // Überschreibt automatisch den von LomBok generierten setter :)
         this.status = status;
         //TODO Bei Änderung des Status: entsprechende Aktion ausführen
     }
 
+    public void berechneStatus() {
+        // status auf basis von dvpuves neu berechnen
+        if (dvpuves.size() == 0) {
+            status = Status.values()[0];
+        } else {
+            Status neuerStatus = Status.values()[Status.values().length-1];
+            for (DvpUve dvpUve : dvpuves) {
+                if (dvpUve.getStatus().ordinal() < neuerStatus.ordinal()) {
+                    neuerStatus = dvpUve.getStatus();
+                }
+            }
+            status = neuerStatus;
+        }
+    }
+
     public void addDvpUve(DvpUve dvpuve){
-        this.dvpuveListe.add(dvpuve);
+        this.dvpuves.add(dvpuve);
+        berechneStatus();
+    }
+
+    public void removeDvpUve(DvpUve dvpuve){
+        this.dvpuves.remove(dvpuve);
+        berechneStatus();
     }
 
     @Override
     public String toString(){
-        return this.zeitstempel + ": " + this.status;
-    } //TODO Hier noch die Liste mit den DVPUVEs durchgeben
-    // for(int i = 0 ; i < this.dvpuveListe.size(); i++){ this.dvpuveListe.get(i).getDvp();} //Oder so
+        String ergebnis = this.zeitstempel + ": " + this.status;
+        ergebnis += "\nDvpUves: \n";
+        for (DvpUve dvpUve : dvpuves) {
+            ergebnis += dvpUve.toString() + "\n";
+        }
+        return ergebnis;
+    }
 }
 
