@@ -11,13 +11,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 @Setter
+@NoArgsConstructor
 public class Position {
 
     private double latitude;
     private double longitude;
-
-    public Position() {
-    }
 
     public Position(double latitude, double longitude) {
         this.latitude = latitude;
