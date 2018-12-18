@@ -42,7 +42,7 @@ public class DraussenOrtungConsumerConfiguration {
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, String.valueOf(false));
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         // allows a pool of processes to divide the work of consuming and processing records
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "productdetailpage");
+        //props.put(ConsumerConfig.GROUP_ID_CONFIG, "productdetailpage");
 
         return props;
     }
@@ -57,7 +57,7 @@ public class DraussenOrtungConsumerConfiguration {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.getContainerProperties().setAckMode(ContainerProperties.MANUAL_IMMEDIATE);
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
 
         return factory;
     }

@@ -1,5 +1,6 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories;
 
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class CustomDvpRepositoryImpl implements CustomDvpRepository {
 
 
         return query.getResultList();
+    }
+
+    @Override
+    public void saveNeuenDvpAufenthaltsort(Aufenthaltsort aufenthaltsort, String trackerId){
+        // Todo speichern
     }
 }

@@ -36,7 +36,7 @@ public class DraussenOrtungEventProcessor extends AbstractDomainEventProcessor<D
         switch (draussenOrtungEventEvent.getType()) {
             case "tracker-created":
             case "tracker-tracked":
-                repository.saveAufenthaltsort(toAufenthaltsort(draussenOrtungEventEvent));
+                repository.saveNeuenDvpAufenthaltsort(toAufenthaltsort(draussenOrtungEventEvent), draussenOrtungEventEvent.getKey());
                 break;
             default:
                 LOG.warn("Unexpected type: '{}' of message with key '{}'", draussenOrtungEventEvent.getType(),
