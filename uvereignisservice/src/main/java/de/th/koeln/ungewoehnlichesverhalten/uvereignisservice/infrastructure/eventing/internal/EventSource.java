@@ -1,4 +1,4 @@
-package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing;
+package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing.internal;
 
 public interface EventSource {
     

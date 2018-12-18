@@ -4,13 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +25,9 @@ public class KafkaGateway {
     private final String topic;
 
     // FIXME topic name
-    @Inject
+    @Autowired
     public KafkaGateway(final KafkaTemplate<String, String> kafkaTemplate, final ObjectMapper objectMapper,
-        @Value("${eventing.topic.product}") final String topic) {
+        @Value("${eventing.topic}") final String topic) {
         this.kafkaTemplate = kafkaTemplate;
         this.objectMapper = objectMapper;
         this.topic = topic;
@@ -46,7 +46,7 @@ public class KafkaGateway {
             message.put("time", event.getTime());
             message.put("type", event.getType());
             message.put("version", event.getVersion());
-            message.put("payload", objectMapper.readValue(event.getPayload(), event.getEntityType()));
+            message.put("payload", objectMapper.readValue(event.getPayload(objectMapper), event.getEntityType()));
             return objectMapper.writeValueAsString(message);
         } catch (final JsonProcessingException e) {
             LOGGER.error("Could not serialize event with id {}", event.getId(), e);

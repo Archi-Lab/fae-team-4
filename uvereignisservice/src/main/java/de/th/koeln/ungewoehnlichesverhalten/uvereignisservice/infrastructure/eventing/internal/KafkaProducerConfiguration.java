@@ -29,19 +29,6 @@ public class KafkaProducerConfiguration {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public NewTopic products() {
-        return new NewTopic("products", 4, (short) 1);
-    }
-
-    @Bean
-    public KafkaAdmin admin() {
-        Map<String, Object> configs = new HashMap<>();
-        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,
-                servers);
-        return new KafkaAdmin(configs);
-    }
-
     private ProducerFactory<String, String> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }

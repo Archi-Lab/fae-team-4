@@ -2,6 +2,7 @@ package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice;
 
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.*;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.services.DvpUvePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
