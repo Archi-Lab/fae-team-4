@@ -38,11 +38,6 @@ public class UVEreignis {
         this.status = Status.ERSTELLT;
     }
 
-    public void setStatus(Status status) { // Überschreibt automatisch den von LomBok generierten setter :)
-        this.status = status;
-        //TODO Bei Änderung des Status: entsprechende Aktion ausführen
-    }
-
     public void berechneStatus() {
         // status auf basis von dvpuves neu berechnen
         if (dvpuves.size() == 0) {
