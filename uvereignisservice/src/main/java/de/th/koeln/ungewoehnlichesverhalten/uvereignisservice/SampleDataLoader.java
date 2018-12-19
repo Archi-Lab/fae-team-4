@@ -18,6 +18,9 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
+        if(ereigbnisRepository.count() > 0)
+            return;
+
         // Testposition erstellen
         Position position = new Position(10, 20);
 
