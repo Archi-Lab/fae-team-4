@@ -12,11 +12,11 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 public class Adresse {
 
-    private String mStraße;
-    private String mHausnummer;
+    private String Straße;
+    private String Hausnummer;
 
     public Adresse(String straße, String hausnummer){
-        mHausnummer = hausnummer;
-        mStraße = straße;
+        Hausnummer = hausnummer;
+        Straße = straße;
     }
 }
