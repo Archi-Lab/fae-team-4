@@ -1,12 +1,18 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing.events.DvpUveEvent;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing.internal.KafkaGateway;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.support.SendResult;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 @Setter

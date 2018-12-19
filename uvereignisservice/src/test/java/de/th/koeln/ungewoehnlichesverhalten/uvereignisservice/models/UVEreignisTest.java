@@ -1,12 +1,14 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.services.DvpUvePublisher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
@@ -17,27 +19,37 @@ import static org.junit.Assert.assertNull;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@Component
 public class UVEreignisTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UVEreignisTest.class);
+    private static final Logger log = LoggerFactory.getLogger(UVEreignisTest.class);
 
     @Autowired
-    private UVEreignisRepository UVERepository;
+    private UVEreignisRepository uveRepository;
+
+    /*@Autowired
+    private DvpUvePublisher dvpUvePublisher;*/
+
+    /*@Test
+    public void publishKafkaEvents() {
+        UVEreignis firstUVE = uveRepository.findAll().iterator().next();
+        dvpUvePublisher.sendeUVEreignis(firstUVE);
+    }*/
 
     @Test
     public void createPersonExpectCreated(){
 
-        final Position position = new Position(10, 20);
+        /*final Position position = new Position(10, 20);
 
         final DVPerson dvp = new DVPerson();
-        dvp.setDpId(5);
+        dvp.setDvpId(5);
         dvp.setPosition(position);
         dvp.setBild(new byte[10]);
 
         final DvpUve dvpuve = new DvpUve(); //TODO hier noch nen DVP rein machen
 
         final UVEreignis uvEreignis = new UVEreignis();
-        uvEreignis.getDvpuveListe().add(dvpuve);
+        uvEreignis.addDvpUve(dvpuve);
         uvEreignis.setZeitstempel(new Date());
         uvEreignis.setSprachnachricht(new Sprachnachricht(new byte[5]));
 
@@ -64,7 +76,7 @@ public class UVEreignisTest {
         UVERepository.delete(savedUVE);
         LOGGER.debug("deleted uvEreignis: " + savedUVE.toString());
 
-        assertNull(UVERepository.findById(1));
+        assertNull(UVERepository.findById(1));*/
     }
 }
 

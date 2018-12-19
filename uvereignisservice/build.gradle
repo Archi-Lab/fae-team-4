@@ -32,6 +32,10 @@ dependencies {
 	compile group: 'org.postgresql', name: 'postgresql'
 	implementation('org.projectlombok:lombok')
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.kafka:spring-kafka-test'
+	implementation 'org.apache.zookeeper:zookeeper'
+	//implementation 'javax.inject:javax.inject:1@jar'
 	runtimeOnly('com.h2database:h2')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
