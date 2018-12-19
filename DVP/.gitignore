@@ -3,6 +3,10 @@
 !gradle/wrapper/gradle-wrapper.jar
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+gradle/
+gradlew
+gradlew.bat
+
 
 ### STS ###
 .apt_generated
