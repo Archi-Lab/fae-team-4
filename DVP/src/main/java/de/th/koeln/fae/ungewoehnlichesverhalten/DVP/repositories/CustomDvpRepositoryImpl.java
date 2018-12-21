@@ -24,7 +24,7 @@ public class CustomDvpRepositoryImpl implements CustomDvpRepository {
     @Override
     public Iterable<DVP> findAllByUmkreissuche(double lat, double lon, long radius) {
 
-        final Query query = entityManager.createNativeQuery("SELECT DISTINCT DVP.DVP_ID, DVP.NAME FROM DVP_AUFENTHALTSORTE da  LEFT JOIN AUFENTHALTSORT as a ON DVP_DVP_ID LEFT JOIN DVP ON DVP.DVP_ID = da.DVP_DVP_ID WHERE ( acos(sin(a.Latitude * 0.0175) * sin( ?  * 0.0175) + cos(a.Latitude * 0.0175) * cos( ?  * 0.0175) * cos(( ?  * 0.0175) - (a.Longitude * 0.0175))) * 6371 <= ? ) AND a.ID = da.AUFENTHALTSORTE_ID", DVP.class);
+        final Query query = entityManager.createNativeQuery("SELECT DISTINCT DVP.DVP_ID, DVP.BILD_URL, DVP.TRACKER_ID FROM DVP_AUFENTHALTSORTE da  LEFT JOIN AUFENTHALTSORT as a ON DVP_DVP_ID LEFT JOIN DVP ON DVP.DVP_ID = da.DVP_DVP_ID WHERE ( acos(sin(a.Latitude * 0.0175) * sin( ?  * 0.0175) + cos(a.Latitude * 0.0175) * cos( ?  * 0.0175) * cos(( ?  * 0.0175) - (a.Longitude * 0.0175))) * 6371 <= ? ) AND a.ID = da.AUFENTHALTSORTE_ID", DVP.class);
 
         query.setParameter(1, lat);
         query.setParameter(2, lat);
