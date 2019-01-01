@@ -43,9 +43,9 @@ public class DvpPositionController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getDVPs(@RequestParam(required = false, defaultValue = "0") double lat,
-                                          @RequestParam(required = false, defaultValue = "0") double lon,
-                                          @RequestParam(required = false, defaultValue = "0") int radius)
+    public ResponseEntity<?> getDVPs(@RequestParam(name = "latitude", required = false, defaultValue = "0") double lat,
+                                          @RequestParam(name = "longitude", required = false, defaultValue = "0") double lon,
+                                          @RequestParam(name = "radius", required = false, defaultValue = "0") int radius)
     {
         // Beispiel: http://localhost:8081/dvps?lat=1&lon=2&radius=10
         Iterable<DVP> dvps;
