@@ -1,15 +1,13 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
 
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address.Adresse;
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address.Postleitzahl;
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.geo.Position;
 import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.repository.AnlaufstelleRepository;
 import org.hamcrest.collection.IsIterableContainingInOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 

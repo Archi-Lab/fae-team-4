@@ -1,4 +1,4 @@
-package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
+package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +8,16 @@ import javax.persistence.Embeddable;
 import java.util.regex.Pattern;
 
 @Embeddable
-@Setter
 @Getter
-@NoArgsConstructor
 public class Postleitzahl {
 
-    private String mPlz;
+    private final String mPlz;
+
+    public Postleitzahl()
+    {
+        // todo: Default PLZ
+        mPlz = "00000";
+    }
 
     public Postleitzahl(String plz){
 
