@@ -1,4 +1,4 @@
-package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.geo;
+package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
 import lombok.Getter;
 import lombok.Setter;

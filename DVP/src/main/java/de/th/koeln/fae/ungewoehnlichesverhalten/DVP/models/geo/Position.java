@@ -1,9 +1,7 @@
-package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.geo;
+package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
 
 import lombok.Getter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
@@ -23,10 +21,5 @@ public class Position {
     public Position(Latitude lat, Longitude lon) {
         latitude = lat;
         longitude = lon;
-    }
-
-    @Override
-    public String toString(){
-        return ToStringBuilder.reflectionToString(this);
     }
 }

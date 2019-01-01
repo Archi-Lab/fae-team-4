@@ -1,5 +1,5 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Position;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

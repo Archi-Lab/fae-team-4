@@ -16,9 +16,11 @@ public class DVP {
     @Id
     private long dvpId;
 
-    private String bildUrl;
+    @Embedded
+    private Bild bild;
 
-    private String trackerId;
+    @Embedded
+    private Tracker tracker;
 
     @OneToMany()
     private List<Aufenthaltsort> aufenthaltsorte;
