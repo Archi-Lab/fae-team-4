@@ -1,5 +1,8 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Latitude;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Longitude;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Position;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.services.DvpUvePublisher;
 import org.junit.Test;
@@ -40,12 +43,12 @@ public class UVEreignisTest {
     @Test
     public void createPersonExpectCreated(){
 
-        final Position position = new Position(10, 20);
+        Position position = new Position(new Latitude(10), new Longitude(20));
 
         final DVPerson dvp = new DVPerson();
         dvp.setDvpId(5);
         dvp.setPosition(position);
-        dvp.setBild(new byte[10]);
+        dvp.setBild(new Bild("DVPImageURL.png"));
 
         final UVEreignis uvEreignis = new UVEreignis();
         final DvpUve dvpuve = new DvpUve();
