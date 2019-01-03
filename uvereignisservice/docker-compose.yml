@@ -8,12 +8,16 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-
   uve:
     ports:
-    - "8082:8082"
+      - "8082:8082"
     build:
       context: .
       dockerfile: Dockerfile
+    networks:
+      - fae-message-broker_backend
     depends_on:
-      - db
+      - db  
+networks:
+  kafka-broker_backend:
+    external: true

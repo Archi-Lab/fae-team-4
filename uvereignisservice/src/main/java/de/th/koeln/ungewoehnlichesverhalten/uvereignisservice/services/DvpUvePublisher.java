@@ -5,6 +5,7 @@ import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eve
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.DvpUve;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.Status;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.UVEreignis;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,26 @@ public class DvpUvePublisher {
 
     private static final Logger log = LoggerFactory.getLogger(DvpUvePublisher.class);
     private final KafkaGateway eventPublisher;
+    private final UVEreignisRepository uvEreignisRepository;
 
 
     @Autowired
-    public DvpUvePublisher(final KafkaGateway eventPublisher)
+    public DvpUvePublisher(final KafkaGateway eventPublisher, UVEreignisRepository uvEreignisRepository)
     {
         this.eventPublisher = eventPublisher;
+        this.uvEreignisRepository = uvEreignisRepository;
     }
 
     public void sendeUVEreignis(UVEreignis uvEreignis) {
         for (DvpUve dvpUve : uvEreignis.getDvpuves()) {
-            publishDVPUVEEvent(dvpUve);
             dvpUve.setStatus(Status.ABGESCHICKT);
         }
         uvEreignis.berechneStatus();
+        uvEreignisRepository.save(uvEreignis);
+
+        for (DvpUve dvpUve : uvEreignis.getDvpuves()) {
+            publishDVPUVEEvent(dvpUve);
+        }
     }
 
     private void publishDVPUVEEvent(DvpUve dvpUve)
