@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 @Getter
 @Setter
 public class Bild {
-    private final String bild;
+    private String bild;
 
     public Bild(){
         bild = null;

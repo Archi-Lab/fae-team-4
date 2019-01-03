@@ -2,17 +2,19 @@ package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 @Embeddable
 @Getter
+@Setter
 public class Position {
     @Embedded
-    private final Latitude latitude;
+    private Latitude latitude;
     @Embedded
-    private final Longitude longitude;
+    private Longitude longitude;
 
     public Position() {
         this.latitude = new Latitude();

@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 @Getter
 public class Longitude {
 
-    private final double longitude;
+    private double longitude;
 
     public Longitude(){
         longitude = 0;
