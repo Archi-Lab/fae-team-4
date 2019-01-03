@@ -2,11 +2,13 @@ package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
+@Setter
 public class Bild {
     private final String bild;
 
