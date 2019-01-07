@@ -26,6 +26,10 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        if(anlaufstelleRepository.count() > 0)
+            return;
+
         Mitarbeiter max = new Mitarbeiter("Max", "Mustermann");
         Mitarbeiter erika = new Mitarbeiter("Erika","Mustermann");
         Mitarbeiter heinz = new Mitarbeiter("Heinz", "Mustermann");

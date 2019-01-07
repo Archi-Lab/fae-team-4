@@ -26,6 +26,9 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
+        if(aufenthaltsorteRepository.count() > 0)
+            return;
+
        for (int i = 1; i <= 5; i++)
        {
            DVP dvp = new DVP(i);

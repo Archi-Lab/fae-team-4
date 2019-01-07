@@ -15,4 +15,6 @@ public class Sprachnachricht {
         sprachnachricht = message;
     }
 
+    protected Sprachnachricht() {}
+
 }

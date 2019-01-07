@@ -29,6 +29,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-data-rest')
     implementation('org.springframework.data:spring-data-rest-hal-browser')
+    compile group: 'org.postgresql', name: 'postgresql'
     implementation('org.projectlombok:lombok')
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
     runtimeOnly('com.h2database:h2')

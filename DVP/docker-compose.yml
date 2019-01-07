@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "9081:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  dvp:
+    ports:
+    - "8081:8081"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
