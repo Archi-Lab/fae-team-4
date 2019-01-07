@@ -15,9 +15,9 @@ services:
       context: .
       dockerfile: Dockerfile
     networks:
-      - fae-message-broker_backend
+      - faemessagebroker_backend
     depends_on:
       - db  
 networks:
-  kafka-broker_backend:
+  faemessagebroker_backend:
     external: true
