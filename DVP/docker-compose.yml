@@ -15,5 +15,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    networks: 
+      - fae-message-broker_backend
     depends_on:
       - db
+
+networks:
+  fae-message-broker_backend:
+    external: true
