@@ -41,7 +41,6 @@ public class DVP {
         this.aufenthaltsorte.add(ort);
     }
 
-    // Lombok does not work??
     public void setBildUrl(String bildUrl) {
         this.bildUrl = bildUrl;
     }

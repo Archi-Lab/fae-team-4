@@ -49,6 +49,7 @@ public class DvpPositionController {
     {
         // Beispiel: http://localhost:8081/dvps?lat=1&lon=2&radius=10
         Iterable<DVP> dvps;
+
         if(lat > 0 && lon > 0 && radius > 0) {
             dvps = mCustomDVPRepo.findAllByUmkreissuche(lat, lon, radius);
         }else {
