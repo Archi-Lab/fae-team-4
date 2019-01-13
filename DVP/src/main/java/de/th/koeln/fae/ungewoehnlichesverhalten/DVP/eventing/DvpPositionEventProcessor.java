@@ -8,7 +8,7 @@ public class DvpPositionEventProcessor {
     protected void processEvent(final DvpPositionEvent positionEvent) {
         switch (positionEvent.getType()) {
             case "tracker-tracked":
-              // repository.save(Aufenthaltsort(positionEvent));
+              // repository.save(toAufenthaltsort(positionEvent));
                 System.out.println("save");
                 break;
             default:
@@ -20,6 +20,9 @@ public class DvpPositionEventProcessor {
     private Aufenthaltsort toAufenthaltsort(final DvpPositionEvent positionEvent) {
         final Aufenthaltsort aufenthaltsort = new Aufenthaltsort();
         /*
+        Beispiel:
+
+        final Product product = new Product();
         product.setId(productEvent.getPayload().getId());
         product.setDescription(productEvent.getPayload().getDescription());
         product.setImage(productEvent.getPayload().getImage());
@@ -28,6 +31,7 @@ public class DvpPositionEventProcessor {
         product.setVendor(productEvent.getPayload().getVendor());
         product.setName(productEvent.getPayload().getName());
         product.setVersion(productEvent.getVersion());
+        return product;
         */
 
         return aufenthaltsort;

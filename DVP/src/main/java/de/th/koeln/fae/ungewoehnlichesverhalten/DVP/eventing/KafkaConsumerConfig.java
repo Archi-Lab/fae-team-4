@@ -1,5 +1,6 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -33,5 +34,20 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
+    }
+
+    @Bean
+    public DvpPositionEventProcessor dvpPositionEventProcessor(){
+        return new DvpPositionEventProcessor();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper(){
+        return new ObjectMapper();
+    }
+
+    @Bean
+    public EventParser eventParser(ObjectMapper objectMapper){
+        return new EventParser(objectMapper);
     }
 }

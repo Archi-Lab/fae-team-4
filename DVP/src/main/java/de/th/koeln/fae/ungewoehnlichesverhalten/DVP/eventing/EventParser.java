@@ -1,6 +1,7 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Inject;
 import javax.validation.Validation;
@@ -11,19 +12,20 @@ public class EventParser {
 
     private final ObjectMapper objectMapper;
 
-    @Inject
+    @Autowired
     public EventParser(final ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
-    protected DvpPositionEvent parseMessage(final String message, final Class<DvpPositionEvent> messageType){
+    protected DvpPositionEvent parseMessage(final String message){
 
         try {
             System.out.println("parse");
-            final DvpPositionEvent kafkaMessage = objectMapper.readValue(message, messageType);
+            final DvpPositionEvent kafkaMessage = objectMapper.readValue(message, DvpPositionEvent.class);
             return kafkaMessage;
         }
         catch(Exception e){
+            System.out.println("parsing Error:" + e.getMessage());
             return null;
             // todo Log
         }
