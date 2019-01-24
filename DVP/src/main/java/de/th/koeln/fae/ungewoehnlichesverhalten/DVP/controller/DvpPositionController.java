@@ -30,17 +30,6 @@ public class DvpPositionController {
         mDVPRepo = dvpRepository;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getDVP(@PathVariable("id") long id)
-    {
-        final DVP dvp = mDVPRepo.findById(id);
-
-        Resource<DVP> resource = new Resource<>(dvp);
-
-        resource.add(linkTo(methodOn(DvpPositionController.class).getDVP(id)).withSelfRel());
-
-        return  ResponseEntity.ok(resource);
-    }
 
     @GetMapping()
     public ResponseEntity<?> getDVPs(@RequestParam(name = "latitude", required = false, defaultValue = "0") double lat,
