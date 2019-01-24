@@ -40,11 +40,8 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         mitarbeiterList.add(erik);
         mitarbeiterList.add(heinz);
 
-
-        List<Anlaufstelle> anlaufstellen = new ArrayList<>();
-
         Anlaufstelle as1 = new Anlaufstelle();
-        as1.setName("TH Köln, Campus Gummersbach");
+        as1.setName(new AnlaufstellenName("TH Köln, Campus Gummersbach"));
         as1.setAdresse(
                 new Adresse(
                         new Postleitzahl("51643"),
@@ -56,7 +53,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         as1.setMitarbeiter(mitarbeiterList);
 
         Anlaufstelle as2 = new Anlaufstelle();
-        as2.setName("Forum Gummersbach");
+        as2.setName(new AnlaufstellenName("Forum Gummersbach"));
         as2.setAdresse(
                 new Adresse(
                         new Postleitzahl("51643"),
@@ -66,7 +63,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
                         new Position(new Latitude(51.025178), new Longitude(7.565437))));
 
         Anlaufstelle as3 = new Anlaufstelle();
-        as3.setName("SCHWALBE Arena");
+        as3.setName(new AnlaufstellenName("SCHWALBE Arena"));
         as3.setAdresse(
                 new Adresse(
                         new Postleitzahl("51643"),
@@ -76,7 +73,7 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
                         new Position(new Latitude(51.024949), new Longitude(7.562937))));
 
         Anlaufstelle as4 = new Anlaufstelle();
-        as4.setName("Deutsche Bank");
+        as4.setName(new AnlaufstellenName("Deutsche Bank"));
         as4.setAdresse(
                 new Adresse(
                         new Postleitzahl("51643"),

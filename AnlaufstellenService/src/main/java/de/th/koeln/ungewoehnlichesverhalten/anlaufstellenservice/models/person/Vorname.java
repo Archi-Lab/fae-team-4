@@ -1,16 +1,17 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.person;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
+@Setter
 public class Vorname {
     private final String vorname;
 
     public Vorname(){
-        // todo: Default Vorname
         vorname = "";
     }
 

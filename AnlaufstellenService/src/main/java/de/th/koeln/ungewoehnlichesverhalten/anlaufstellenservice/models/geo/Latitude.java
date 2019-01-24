@@ -1,10 +1,13 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.geo;
 
 import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
+@Setter
 public class Latitude {
 
     private final double latitude;

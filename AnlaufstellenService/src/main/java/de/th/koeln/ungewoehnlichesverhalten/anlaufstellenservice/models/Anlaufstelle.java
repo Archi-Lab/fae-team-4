@@ -22,7 +22,7 @@ public class Anlaufstelle {
     @JoinColumn(name = "anlaufstelle_id")
     private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
 
-    private String name;
+    private AnlaufstellenName name;
 
     @Embedded
     private Adresse adresse;
@@ -30,6 +30,11 @@ public class Anlaufstelle {
 
     public Anlaufstelle() {
 
+    }
+
+    public Anlaufstelle(AnlaufstellenName name, Adresse adresse) {
+        this.name = name;
+        this.adresse = adresse;
     }
 
     @Override

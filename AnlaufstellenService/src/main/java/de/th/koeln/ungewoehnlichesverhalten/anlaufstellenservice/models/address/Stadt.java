@@ -1,26 +1,27 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
 @Getter
+@Setter
 @Embeddable
 public class Stadt {
     private final String stadt;
 
     public Stadt()
     {
-        // todo: Default für Stadt ???
         stadt = "";
     }
 
-    public Stadt(String str) {
-        if(!isValid(str)){
+    public Stadt(String stadt) {
+        if(!isValid(stadt)){
             throw new IllegalArgumentException("Invalid Stadt");
         }
 
-        stadt = str;
+        this.stadt = stadt;
     }
 
     private boolean isValid(String str){

@@ -1,17 +1,18 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
 @Getter
+@Setter
 @Embeddable
 public class Straße {
     private final String straße;
 
     public Straße()
     {
-        // todo: Default für Straße ???
         straße = "";
     }
 

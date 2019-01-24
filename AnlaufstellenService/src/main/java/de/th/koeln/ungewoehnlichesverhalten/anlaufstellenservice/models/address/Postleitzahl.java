@@ -9,14 +9,14 @@ import java.util.regex.Pattern;
 
 @Embeddable
 @Getter
+@Setter
 public class Postleitzahl {
 
-    private final String mPlz;
+    private final String Plz;
 
     public Postleitzahl()
     {
-        // todo: Default PLZ
-        mPlz = "00000";
+        Plz = "00000";
     }
 
     public Postleitzahl(String plz){
@@ -25,7 +25,7 @@ public class Postleitzahl {
             throw new IllegalArgumentException("Invalid zip code");
         }
 
-        mPlz = plz;
+        Plz = plz;
     }
 
     private boolean isValid(String plz){

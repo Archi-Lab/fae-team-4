@@ -2,6 +2,7 @@ package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.geo;
 
 
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Embeddable;
@@ -9,6 +10,7 @@ import javax.persistence.Embedded;
 
 @Embeddable
 @Getter
+@Setter
 public class Position {
     @Embedded
     private final Latitude latitude;
