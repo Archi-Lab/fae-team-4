@@ -42,4 +42,35 @@ public class Anlaufstelle {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public AnlaufstellenName getName() {
+        return name;
+    }
+
+    public void setName(AnlaufstellenName name) {
+        this.name = name;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public List<Mitarbeiter> getMitarbeiter() {
+        return mitarbeiter;
+    }
+
+    public void setMitarbeiter(List<Mitarbeiter> mitarbeiter) {
+        this.mitarbeiter = mitarbeiter;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

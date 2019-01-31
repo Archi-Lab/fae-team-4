@@ -1,4 +1,4 @@
-package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.configuration;
+package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
