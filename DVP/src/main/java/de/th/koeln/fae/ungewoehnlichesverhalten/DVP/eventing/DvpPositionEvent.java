@@ -3,12 +3,11 @@ package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Getter
 public class DvpPositionEvent {
+
 
     private final String id;
 
@@ -31,5 +30,29 @@ public class DvpPositionEvent {
         this.type = type;
         this.payload = payload;
         this.version = version;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public DvpPositionEventPayload getPayload() {
+        return payload;
     }
 }

@@ -14,6 +14,7 @@ public class    Position {
     private final double latitude;
     private final double longitude;
 
+
     public Position() {
         this.latitude = 0.0;
         this.longitude = 0.0;
