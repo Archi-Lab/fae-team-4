@@ -22,6 +22,7 @@ public class UVEreignis {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    // TODO Anlaufstelle aus UVE abrufen?
 
     //@OneToMany
     //@JoinColumn(name = "uvereignis_id")

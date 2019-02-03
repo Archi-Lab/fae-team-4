@@ -17,9 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -44,39 +42,58 @@ public class UVEreignisTest {
     public void createPersonExpectCreated(){
 
         Position position = new Position(new Latitude(10), new Longitude(20));
+        Sprachnachricht sn = new Sprachnachricht(new byte[5]);
 
+        /** Neue DVP erstellen, Attribute setzen **/
         final DVPerson dvp = new DVPerson();
         dvp.setDvpId(5);
         dvp.setPosition(position);
         dvp.setBild(new Bild("DVPImageURL.png"));
 
+        /** Neues UVE, mit einem DvpUve erstellen, Attribute setzen **/
         final UVEreignis uvEreignis = new UVEreignis();
         final DvpUve dvpuve = new DvpUve();
+        dvpuve.setDvPerson(dvp);
         uvEreignis.addDvpUve(dvpuve);
         uvEreignis.setZeitstempel(new Date());
-        uvEreignis.setSprachnachricht(new Sprachnachricht(new byte[5]));
+        uvEreignis.setSprachnachricht(sn);
+        dvpuve.setSprachnachricht(sn);
 
+        /** UVE in repo speichern **/
         final UVEreignis savedUVE = uveRepository.save(uvEreignis);
         LOGGER.debug("saved uvEreignis: " + savedUVE.toString());
 
+        /** Test UVE **/
         assertNotNull(savedUVE);
-        assertNotNull(savedUVE.getId());
+        assertEquals(uvEreignis.getId(), savedUVE.getId());
         assertEquals(uvEreignis.getSprachnachricht().getSprachnachricht(), savedUVE.getSprachnachricht().getSprachnachricht());
         assertEquals(uvEreignis.getZeitstempel(), savedUVE.getZeitstempel());
+        assertEquals(uvEreignis.getStatus(), savedUVE.getStatus());
 
-
+        /** Test DvpUve-Liste **/
         final List<DvpUve> saveddvpuves = savedUVE.getDvpuves();
         assertNotNull(saveddvpuves);
-        // TODO: assertequals DVPUVE Listen
-        /*for (DvpUve dvpuveInList : saveddvpuves) assertEquals(dvpuveInList.getDvpUveId(), saveddvpuves);
-        assertEquals(dvp.getDpId(), savedDVP.getDpId());
+        assertFalse(saveddvpuves.isEmpty()); // DARF ICH DAS SO?
+        assertTrue(saveddvpuves.size()== uvEreignis.getDvpuves().size()); // asserEquals geht bei ints doch nicht?
+
+        for (int i = 0; i < saveddvpuves.size(); i++) {
+            assertEquals(uvEreignis.getDvpuves().get(i), saveddvpuves.get(i));
+        }
+
+        /** Test DVP **/
+        final DVPerson savedDVP = saveddvpuves.get(0).getDvPerson();
+        assertNotNull(savedDVP);
+        assertEquals(dvp, savedDVP);
+        assertEquals(dvp.getDvpId(), savedDVP.getDvpId());
         assertEquals(dvp.getBild(), savedDVP.getBild());
         LOGGER.debug("saved dv person: " + savedDVP.toString());
 
+        /** Test Position **/
         final Position savedPosition = savedDVP.getPosition();
         assertNotNull(savedPosition);
-        assertEquals(position.getLatitude(), savedPosition.getLatitude(), 0.0);
-        assertEquals(position.getLongitude(), savedPosition.getLongitude(), 0.0);*/
+        assertEquals(dvp.getPosition(), savedPosition);
+        assertEquals(position.getLatitude(), savedPosition.getLatitude());
+        assertEquals(position.getLongitude(), savedPosition.getLongitude());
 
         uveRepository.delete(savedUVE);
         LOGGER.debug("deleted uvEreignis: " + savedUVE.toString());
