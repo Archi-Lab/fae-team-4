@@ -23,7 +23,7 @@ public class DvpPositionEventProcessor {
         Beispiel:
 
         final Product product = new Product();
-        product.setId(productEvent.getPayload().getId());
+        product.setId(productEvent.getPayload().getEventID());
         product.setDescription(productEvent.getPayload().getDescription());
         product.setImage(productEvent.getPayload().getImage());
         product.setPrice(productEvent.getPayload().getPrice());

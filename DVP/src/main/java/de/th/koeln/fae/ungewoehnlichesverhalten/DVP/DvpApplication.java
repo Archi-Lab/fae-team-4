@@ -11,6 +11,7 @@ public class DvpApplication {
 
 	public static void main(String[] args) {
 
+        System.setProperty("spring.profiles.default", "prod");
 		SpringApplication.run(DvpApplication.class, args);
 
 	}

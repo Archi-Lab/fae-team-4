@@ -31,9 +31,7 @@ dependencies {
     implementation('org.springframework.data:spring-data-rest-hal-browser')
     implementation('org.springframework.kafka:spring-kafka')
     implementation('javax.inject:javax.inject:1@jar')
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
-    runtimeOnly('com.h2database:h2')
+    implementation('com.h2database:h2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    
 }
 

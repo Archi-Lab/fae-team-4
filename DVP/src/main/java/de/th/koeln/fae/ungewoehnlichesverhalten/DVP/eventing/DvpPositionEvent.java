@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DvpPositionEvent {
+public class DvpPositionEvent <P extends DvpPositionEventPayload> {
 
 
-    private final String id;
+    private final String eventID;
 
     private final String key;
 
@@ -19,12 +19,12 @@ public class DvpPositionEvent {
 
     private final Long version;
 
-    private final DvpPositionEventPayload payload;
+    private final P payload;
 
-    public DvpPositionEvent(@JsonProperty("id") final String id, @JsonProperty("key") final String key,
-                       @JsonProperty("time") final String time, @JsonProperty("type") final String type,
-                       @JsonProperty("payload") final DvpPositionEventPayload payload, @JsonProperty("version") final Long version) {
-        this.id = id;
+    public DvpPositionEvent(@JsonProperty("eventID") final String eventID, @JsonProperty("key") final String key,
+                            @JsonProperty("time") final String time, @JsonProperty("type") final String type,
+                            @JsonProperty("payload") final P payload, @JsonProperty("version") final Long version) {
+        this.eventID = eventID;
         this.key = key;
         this.time = time;
         this.type = type;
@@ -32,8 +32,8 @@ public class DvpPositionEvent {
         this.version = version;
     }
 
-    public String getId() {
-        return id;
+    public String getEventID() {
+        return eventID;
     }
 
     public String getKey() {

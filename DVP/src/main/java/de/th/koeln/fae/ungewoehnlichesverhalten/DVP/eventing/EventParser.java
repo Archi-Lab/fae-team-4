@@ -1,6 +1,8 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Inject;
@@ -11,6 +13,7 @@ import java.util.Objects;
 public class EventParser {
 
     private final ObjectMapper objectMapper;
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventParser.class);
 
     @Autowired
     public EventParser(final ObjectMapper objectMapper) {
@@ -20,14 +23,13 @@ public class EventParser {
     protected DvpPositionEvent parseMessage(final String message){
 
         try {
-            System.out.println("parse");
+            LOGGER.info("Parsing received event.");
             final DvpPositionEvent kafkaMessage = objectMapper.readValue(message, DvpPositionEvent.class);
             return kafkaMessage;
         }
         catch(Exception e){
-            System.out.println("parsing Error:" + e.getMessage());
+            LOGGER.error("Error when parsing event: {}", e.getMessage());
             return null;
-            // todo Log
         }
 
     }
