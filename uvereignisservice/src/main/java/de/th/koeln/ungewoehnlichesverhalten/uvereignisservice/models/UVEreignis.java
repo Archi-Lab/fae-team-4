@@ -26,7 +26,7 @@ public class UVEreignis {
 
     //@OneToMany
     //@JoinColumn(name = "uvereignis_id")
-    @ElementCollection
+    @ElementCollection(targetClass = DvpUve.class)
     private List<DvpUve> dvpuves = new ArrayList<>();
 
     @Embedded
