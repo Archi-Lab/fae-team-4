@@ -5,14 +5,19 @@ import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eve
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Setter
 @Getter
 @Embeddable
 public class DvpUve implements EventSource {
+
+    /*@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="uvereignis_id")
+    private UVEreignis uvEreignis;
+    */
+
     @Embedded
     private DVPerson dvPerson;
 
