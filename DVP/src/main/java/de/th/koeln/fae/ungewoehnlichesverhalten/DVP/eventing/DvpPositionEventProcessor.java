@@ -1,14 +1,19 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing;
 
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.AufenthaltsorteRepository;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class DvpPositionEventProcessor {
+
+    @Autowired
+    private AufenthaltsorteRepository repository;
 
     protected void processEvent(final DvpPositionEvent positionEvent) {
         switch (positionEvent.getType()) {
             case "tracker-tracked":
-              // repository.save(toAufenthaltsort(positionEvent));
+                repository.save(toAufenthaltsort(positionEvent));
                 System.out.println("save");
                 break;
             default:
@@ -18,22 +23,7 @@ public class DvpPositionEventProcessor {
     }
 
     private Aufenthaltsort toAufenthaltsort(final DvpPositionEvent positionEvent) {
-        final Aufenthaltsort aufenthaltsort = new Aufenthaltsort();
-        /*
-        Beispiel:
-
-        final Product product = new Product();
-        product.setId(productEvent.getPayload().getEventID());
-        product.setDescription(productEvent.getPayload().getDescription());
-        product.setImage(productEvent.getPayload().getImage());
-        product.setPrice(productEvent.getPayload().getPrice());
-        product.setProductNumber(productEvent.getPayload().getProductNumber());
-        product.setVendor(productEvent.getPayload().getVendor());
-        product.setName(productEvent.getPayload().getName());
-        product.setVersion(productEvent.getVersion());
-        return product;
-        */
-
-        return aufenthaltsort;
+        return new Aufenthaltsort(positionEvent.getPayload().getTimestamp(),
+                positionEvent.getPayload().getPosition());
     }
 }

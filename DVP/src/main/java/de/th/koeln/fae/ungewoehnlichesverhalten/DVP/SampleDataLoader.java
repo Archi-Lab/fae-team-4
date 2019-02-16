@@ -29,23 +29,23 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
         if(aufenthaltsorteRepository.count() > 0)
             return;
 
-       for (int i = 1; i <= 5; i++)
-       {
-           DVP dvp = new DVP(i);
-           dvp.setBildUrl(bildUrls[i-1]);
-           this.dvpRepository.save(dvp);
-
-           for (int x = 1; x <= 3; x++)
-           {
-               Aufenthaltsort ort = new Aufenthaltsort(new Date(), new Position(10 + x + i, 25 + x + i));
-
-               this.aufenthaltsorteRepository.save(ort);
-
-               dvp.addAufenthaltsort(ort);
-           }
-
-           this.dvpRepository.save(dvp);
-       }
+//       for (int i = 1; i <= 5; i++)
+//       {
+//           DVP dvp = new DVP(i);
+//           dvp.setBildUrl(bildUrls[i-1]);
+//           this.dvpRepository.save(dvp);
+//
+//           for (int x = 1; x <= 3; x++)
+//           {
+//               Aufenthaltsort ort = new Aufenthaltsort(new Date(), new Position(10 + x + i, 25 + x + i));
+//
+//               this.aufenthaltsorteRepository.save(ort);
+//
+//               dvp.addAufenthaltsort(ort);
+//           }
+//
+//           this.dvpRepository.save(dvp);
+//       }
 
     }
 
