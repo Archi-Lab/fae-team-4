@@ -2,7 +2,6 @@ package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories;
 
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

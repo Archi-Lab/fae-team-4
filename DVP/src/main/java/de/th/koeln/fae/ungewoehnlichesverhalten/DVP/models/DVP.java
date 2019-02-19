@@ -13,7 +13,7 @@ public class DVP {
 
     private String bildUrl;
 
-    private String trackerId;
+    private UUID trackerId;
 
     @OneToMany()
     private List<Aufenthaltsort> aufenthaltsorte;
@@ -24,6 +24,12 @@ public class DVP {
 
     public DVP(final UUID id) {
         this.dvpId = id;
+    }
+
+    public DVP(final UUID id, final UUID trackerId, final String bildUrl) {
+        this.dvpId = id;
+        this.trackerId = trackerId;
+        this.bildUrl = bildUrl;
     }
 
     public void addAufenthaltsort(Aufenthaltsort ort)
@@ -41,7 +47,7 @@ public class DVP {
         this.bildUrl = bildUrl;
     }
 
-    public void setTrackerId(String trackerId) {
+    public void setTrackerId(UUID trackerId) {
         this.trackerId = trackerId;
     }
 }

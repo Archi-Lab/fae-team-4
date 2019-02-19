@@ -37,7 +37,6 @@ public class TrackerTrackedEventConsumer {
                                 trackerDaten.payload.currentPosition.longitude
                         )
                 );
-
                 trackerService.handleTrackerTrackedEvent(trackerDaten.payload.trackerId, aufenthaltsort);
                 break;
 
