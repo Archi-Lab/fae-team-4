@@ -20,6 +20,9 @@ import java.util.Optional;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+/**
+ * Stellt eine REST-Schnittstelle zum erstellen und verwalten von UV-Ereignissen zur Verfügung
+ */
 @RepositoryRestController
 public class UVEreignisController {
 
@@ -36,8 +39,14 @@ public class UVEreignisController {
         this.dvpUvePublisher = dvpUvePublisher;
     }
 
+    /**
+     * Das fertige UV-Ereignis wird über den Service DvpUvePublisher über eine Message-Queue versendet
+     *
+     * @param id gemappte ID eines UV-Ereignisses
+     * @return ResponseEntity<?> gibt zurück, ob das UV-Ereignis erfolgreich versendet wurde
+     */
     @PutMapping("/uvereignisse/{id}/senden")
-    ResponseEntity<?> setUVEreignisSenden(@PathVariable Long id) {
+    public ResponseEntity<?> setUVEreignisSenden(@PathVariable Long id) {
 
         final Optional<UVEreignis> optUVEreignis = this.uvEreignisRepository.findById(id);
 
