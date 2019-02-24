@@ -4,7 +4,6 @@ import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing.Tracker.models.Trac
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.service.TrackerService;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,12 +13,15 @@ import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
 
 @Service
-@RequiredArgsConstructor
 public class TrackerTrackedEventConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TrackerTrackedEventConsumer.class);
 
     private final TrackerService trackerService;
+
+    public TrackerTrackedEventConsumer(TrackerService trackerService){
+        this.trackerService = trackerService;
+    }
 
     @KafkaListener(topics = "${kafka.topics.tracker}", containerFactory = "trackerConsumerContainerFactory")
     public void receive(@Payload TrackerTrackedEventMessage trackerDaten) {

@@ -11,12 +11,15 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class DvpEventConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DvpEventConsumer.class);
 
     private final DvpService dvpService;
+
+    public DvpEventConsumer(DvpService dvpService){
+        this.dvpService = dvpService;
+    }
 
     @KafkaListener(topics = "${kafka.topics.dvp}", containerFactory = "dvpConsumerContainerFactory")
     public void receive(@Payload DvpEventMessage dvpDaten) {
