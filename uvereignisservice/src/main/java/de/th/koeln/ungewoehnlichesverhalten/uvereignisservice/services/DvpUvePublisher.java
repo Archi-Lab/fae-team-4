@@ -29,6 +29,11 @@ public class DvpUvePublisher {
         this.uvEreignisRepository = uvEreignisRepository;
     }
 
+    /**
+     * Es wird ein UV-Ereignis über eine Message-Queue verschickt
+     *
+     * @param uvEreignis das UV-Ereignis, welches über die Message-Queue verschickt wird
+     */
     public void sendeUVEreignis(UVEreignis uvEreignis) {
         for (DvpUve dvpUve : uvEreignis.getDvpuves()) {
             dvpUve.setStatus(Status.ABGESCHICKT);
@@ -41,6 +46,11 @@ public class DvpUvePublisher {
         }
     }
 
+    /**
+     * Es wird ein DvpUve über eine Message-Queue verschickt
+     *
+     * @param dvpUve das DvpUve, welches über die Message-Queue verschickt wird
+     */
     private void publishDVPUVEEvent(DvpUve dvpUve)
     {
         DvpUveEvent dvpUveEvent = new DvpUveEvent(dvpUve);

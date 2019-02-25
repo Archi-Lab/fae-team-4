@@ -14,6 +14,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.Type;
 import java.util.List;
 
+/**
+ * Es wird dafür gesorgt, dass Ids von Entities in den Response-Bodys der Controller enthalten sind
+ */
 @Configuration
 public class RestConfiguration implements RepositoryRestConfigurer {
 
