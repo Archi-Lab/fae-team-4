@@ -22,7 +22,7 @@ public class UVEreignis {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    // TODO Anlaufstelle aus UVE abrufen?
+    // Anlaufstelle aus UVE abrufen? Sonst nur aus DvpUve für DN
 
     //@OneToMany
     //@JoinColumn(name = "uvereignis_id")
@@ -39,8 +39,8 @@ public class UVEreignis {
         this.status = Status.ERSTELLT;
     }
 
+    /** Status auf Basis von dvpuves neu berechnen **/
     public void berechneStatus() {
-        // status auf basis von dvpuves neu berechnen
         if (dvpuves.size() == 0) {
             status = Status.values()[0];
         } else {
