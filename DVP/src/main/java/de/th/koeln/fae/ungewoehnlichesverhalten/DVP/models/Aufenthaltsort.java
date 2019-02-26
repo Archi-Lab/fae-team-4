@@ -46,4 +46,8 @@ public class Aufenthaltsort {
     public UUID getId() { return this.id; }
 
     public void setId(final UUID id) { this.id = id; }
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
 }
