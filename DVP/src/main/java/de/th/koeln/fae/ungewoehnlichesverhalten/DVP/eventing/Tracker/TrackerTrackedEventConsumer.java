@@ -36,7 +36,8 @@ public class TrackerTrackedEventConsumer {
                 aufenthaltsort.setPosition(
                         new Position(
                                 trackerDaten.payload.currentPosition.latitude,
-                                trackerDaten.payload.currentPosition.longitude
+                                trackerDaten.payload.currentPosition.longitude,
+                                trackerDaten.payload.currentPosition.altitude
                         )
                 );
                 trackerService.handleTrackerTrackedEvent(trackerDaten.payload.trackerId, aufenthaltsort);

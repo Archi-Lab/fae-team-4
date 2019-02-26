@@ -22,7 +22,7 @@ public class TrackerServiceImpl implements TrackerService {
 
 	@Override
 	public void handleTrackerTrackedEvent(UUID trackerId, Aufenthaltsort aufenthaltsort) {
-		LOGGER.info("Service: Tracker Event speichern: {}", trackerId);
+		LOGGER.info("Service: Tracker Event speichern: {}, {}", trackerId, aufenthaltsort.getPosition().getLongitude());
 		aufenthaltsorteRepository.save(aufenthaltsort);
 	}
 }

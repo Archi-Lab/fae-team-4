@@ -6,4 +6,5 @@ public class TrackerPosition {
 
     public double latitude;
 
+    public double altitude;
 }
