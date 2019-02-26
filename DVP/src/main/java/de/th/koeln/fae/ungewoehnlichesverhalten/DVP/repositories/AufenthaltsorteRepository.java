@@ -6,6 +6,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @RepositoryRestResource(collectionResourceRel = "aufenthaltsorte", path = "aufenthaltsorte")
-public interface AufenthaltsorteRepository extends CrudRepository<Aufenthaltsort, Long> {
+public interface AufenthaltsorteRepository extends CrudRepository<Aufenthaltsort, UUID> {
 }
