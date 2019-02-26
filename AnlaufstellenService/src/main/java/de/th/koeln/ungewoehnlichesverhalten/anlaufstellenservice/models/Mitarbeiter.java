@@ -13,7 +13,8 @@ public class Mitarbeiter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter
-    public long id;
+    @Getter
+    private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="anlaufstelle_id")

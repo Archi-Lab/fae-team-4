@@ -23,9 +23,7 @@ public class UVEreignis {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //@OneToMany
-    //@JoinColumn(name = "uvereignis_id")
-    @ElementCollection
+    @ElementCollection(targetClass = DvpUve.class)
     private List<DvpUve> dvpuves = new ArrayList<>();
 
     @Embedded
@@ -38,8 +36,10 @@ public class UVEreignis {
         this.status = Status.ERSTELLT;
     }
 
+    /**
+     * Der Status eines UV-Ereignisses wird in Abhängigkeit von den Stati der enthaltenen DvpUves berechnet
+     */
     public void berechneStatus() {
-        // status auf basis von dvpuves neu berechnen
         if (dvpuves.size() == 0) {
             status = Status.values()[0];
         } else {
@@ -53,11 +53,17 @@ public class UVEreignis {
         }
     }
 
+    /**
+     * Es wird ein neues DvpUve hinzugefügt und der Status neu berechnet
+     */
     public void addDvpUve(DvpUve dvpuve){
         this.dvpuves.add(dvpuve);
         berechneStatus();
     }
 
+    /**
+     * Es wird ein DvpUve entfernt und der Status neu berechnet
+     */
     public void removeDvpUve(DvpUve dvpuve){
         this.dvpuves.remove(dvpuve);
         berechneStatus();
