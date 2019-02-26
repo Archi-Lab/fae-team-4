@@ -17,7 +17,8 @@ public class DVP {
     @Id
     private UUID dvpId;
 
-    private String bildUrl;
+    @Embedded
+    private Bild bild;
 
     private UUID trackerId;
 
@@ -35,7 +36,7 @@ public class DVP {
     public DVP(final UUID id, final UUID trackerId, final String bildUrl) {
         this.dvpId = id;
         this.trackerId = trackerId;
-        this.bildUrl = bildUrl;
+        this.bild = new Bild(bildUrl);
     }
 
     /**
@@ -55,10 +56,6 @@ public class DVP {
         this.aufenthaltsorte.add(ort);
     }
 
-    public void setBildUrl(String bildUrl) {
-        this.bildUrl = bildUrl;
-    }
-
     public void setTrackerId(UUID trackerId) {
         this.trackerId = trackerId;
     }
@@ -68,7 +65,7 @@ public class DVP {
     }
 
     public String getBildUrl() {
-        return bildUrl;
+        return bild.getBild();
     }
 
     public UUID getTrackerId() {

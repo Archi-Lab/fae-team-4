@@ -1,5 +1,6 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address.Adresse;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -21,17 +22,19 @@ public class Anlaufstelle {
     @JoinColumn(name = "anlaufstelle_id")
     private List<Mitarbeiter> mitarbeiter = new ArrayList<>();
 
-    private String name;
-    @Embedded
-    private Position position;
+    private AnlaufstellenName name;
+
     @Embedded
     private Adresse adresse;
-    private Postleitzahl postleitzahl;
-    private String stadt;
+
 
     public Anlaufstelle() {
-        // TODO generate Position based on address?
-        this.setPosition(new Position(0.0, 0.0));
+
+    }
+
+    public Anlaufstelle(AnlaufstellenName name, Adresse adresse) {
+        this.name = name;
+        this.adresse = adresse;
     }
 
     @Override

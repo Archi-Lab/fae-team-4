@@ -1,6 +1,9 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice;
 
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.*;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Latitude;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Longitude;
+import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models.geo.Position;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.repositories.UVEreignisRepository;
 import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.services.DvpUvePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +26,20 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
             return;
 
         // Testposition erstellen
-        Position position = new Position(10, 20);
+        Position position = new Position(new Latitude(10), new Longitude(20));
 
         // DVP 1 erstellen
         DVPerson dp1 = new DVPerson();
         dp1.setDvpId(5);
         dp1.setPosition(position);
-        dp1.setBild(new byte[10]);
+        dp1.setBild(new Bild("DVP1ImageURL.png"));
 
         // DVP 2 erstellen
         DVPerson dp2 = new DVPerson();
         dp2.setDvpId(6);
         dp2.setPosition(position);
-        dp2.setBild(new byte[10]);
+        dp2.setBild(new Bild("DVP2ImageURL.png"));
+
 
         // UVEreignis 1 erstellen
         UVEreignis uve1 = new UVEreignis();

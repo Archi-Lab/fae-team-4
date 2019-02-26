@@ -2,7 +2,10 @@ package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing.Tracker;
 
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.eventing.Tracker.models.TrackerTrackedEventMessage;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Altitude;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Latitude;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Longitude;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Position;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.service.TrackerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +38,9 @@ public class TrackerTrackedEventConsumer {
                 aufenthaltsort.setTimestamp(ZonedDateTime.parse(trackerDaten.time).toInstant());
                 aufenthaltsort.setPosition(
                         new Position(
-                                trackerDaten.payload.currentPosition.latitude,
-                                trackerDaten.payload.currentPosition.longitude,
-                                trackerDaten.payload.currentPosition.altitude
+                                new Latitude(trackerDaten.payload.currentPosition.latitude),
+                                new Longitude(trackerDaten.payload.currentPosition.longitude),
+                                new Altitude(trackerDaten.payload.currentPosition.altitude)
                         )
                 );
                 trackerService.handleTrackerTrackedEvent(trackerDaten.payload.trackerId, aufenthaltsort);

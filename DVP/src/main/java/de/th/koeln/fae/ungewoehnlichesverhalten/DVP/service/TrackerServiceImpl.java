@@ -26,6 +26,13 @@ public class TrackerServiceImpl implements TrackerService {
 	@Autowired
 	DvpRepository dvpRepository;
 
+    /**
+     * Zur Behandlung des Tracker Events wird nach einer DVP mit der trackerId gesucht.
+     * Wird diese gefunden, wird der im Event enthaltene Aufenthaltsort hinterlegt.
+     * Wenn keine passende DVP gefunden wird, wird eine Warnung mit der trackerId geloggt.
+     * @param trackerId UUID des Tracker im Event
+     * @param aufenthaltsort Positionsdaten als Autenthaltsort
+     */
 	@Override
 	public void handleTrackerTrackedEvent(UUID trackerId, Aufenthaltsort aufenthaltsort) {
 		LOGGER.info("Service: Tracker Event speichern: {}", trackerId);

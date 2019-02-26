@@ -1,4 +1,4 @@
-package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
+package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.address;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,12 +8,16 @@ import javax.persistence.Embeddable;
 import java.util.regex.Pattern;
 
 @Embeddable
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 public class Postleitzahl {
 
-    private String mPlz;
+    private final String Plz;
+
+    public Postleitzahl()
+    {
+        Plz = "00000";
+    }
 
     public Postleitzahl(String plz){
 
@@ -21,7 +25,7 @@ public class Postleitzahl {
             throw new IllegalArgumentException("Invalid zip code");
         }
 
-        mPlz = plz;
+        Plz = plz;
     }
 
     private boolean isValid(String plz){

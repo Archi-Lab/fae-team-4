@@ -1,8 +1,7 @@
 package de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models;
 
+import de.th.koeln.ungewoehnlichesverhalten.anlaufstellenservice.models.person.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -22,17 +21,17 @@ public class Mitarbeiter {
 
     @Getter
     @Column(nullable = false)
-    private String vorname;
+    private Vorname vorname;
 
     @Getter
     @Column(nullable = false)
-    private String nachname;
+    private Nachname nachname;
 
     public Mitarbeiter() {
 
     }
 
-    public Mitarbeiter(String vorname, String nachname) {
+    public Mitarbeiter(Vorname vorname, Nachname nachname) {
         this.vorname = vorname;
         this.nachname = nachname;
     }

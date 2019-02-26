@@ -1,5 +1,5 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models;
-
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Position;
 import javax.persistence.*;
 import java.util.UUID;
 import java.time.Instant;

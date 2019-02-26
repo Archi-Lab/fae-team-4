@@ -1,8 +1,11 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP;
 
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Bild;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Position;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Latitude;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Longitude;
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Position;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.AufenthaltsorteRepository;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.DvpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +49,6 @@ public class SampleDataLoader implements ApplicationListener<ContextRefreshedEve
 //
 //           this.dvpRepository.save(dvp);
 //       }
-
     }
 
 
