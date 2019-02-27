@@ -1,7 +1,5 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
-import lombok.Getter;
-
 import javax.persistence.Embeddable;
 
 /**

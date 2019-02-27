@@ -26,11 +26,11 @@ public class DvpUve implements EventSource {
     */
 
     @Embedded
-    private DVPerson dvPerson;
+    DVPerson dvPerson;
 
     @Embedded
-    private Sprachnachricht sprachnachricht;
-    private Status status;
+    Sprachnachricht sprachnachricht;
+    Status status;
 
     private UUID dvpUveId;
 

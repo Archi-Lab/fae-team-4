@@ -44,56 +44,54 @@ public class UVEreignisTest {
         Position position = new Position(new Latitude(10), new Longitude(20));
         Sprachnachricht sn = new Sprachnachricht(new byte[5]);
 
-        /** Neue DVP erstellen, Attribute setzen **/
+        /* Neue DVP erstellen, Attribute setzen **/
         final DVPerson dvp = new DVPerson();
-        dvp.setDvpId(5);
-        dvp.setPosition(position);
-        dvp.setBild(new Bild("DVPImageURL.png"));
+        dvp.dvpId = 5;
+        dvp.position = position;
+        dvp.bild = new Bild("DVPImageURL.png");
 
-        /** Neues UVE, mit einem DvpUve erstellen, Attribute setzen **/
+        /* Neues UVE, mit einem DvpUve erstellen, Attribute setzen **/
         final UVEreignis uvEreignis = new UVEreignis();
         final DvpUve dvpuve = new DvpUve();
-        dvpuve.setDvPerson(dvp);
+        dvpuve.dvPerson = dvp;
         uvEreignis.addDvpUve(dvpuve);
-        uvEreignis.setZeitstempel(new Date());
-        uvEreignis.setSprachnachricht(sn);
-        dvpuve.setSprachnachricht(sn);
+        uvEreignis.zeitstempel = new Date();
+        dvpuve.sprachnachricht = sn;
 
-        /** UVE in repo speichern **/
+        /* UVE in repo speichern **/
         final UVEreignis savedUVE = uveRepository.save(uvEreignis);
         LOGGER.debug("saved uvEreignis: " + savedUVE.toString());
 
-        /** Test UVE **/
+        /* Test UVE **/
         assertNotNull(savedUVE);
-        assertEquals(uvEreignis.getId(), savedUVE.getId());
-        assertEquals(uvEreignis.getSprachnachricht().getSprachnachricht(), savedUVE.getSprachnachricht().getSprachnachricht());
-        assertEquals(uvEreignis.getZeitstempel(), savedUVE.getZeitstempel());
-        assertEquals(uvEreignis.getStatus(), savedUVE.getStatus());
+        assertEquals(uvEreignis.id, savedUVE.id);
+        assertEquals(uvEreignis.zeitstempel, savedUVE.zeitstempel);
+        assertEquals(uvEreignis.status, savedUVE.status);
 
-        /** Test DvpUve-Liste **/
-        final List<DvpUve> saveddvpuves = savedUVE.getDvpuves();
+        /* Test DvpUve-Liste **/
+        final List<DvpUve> saveddvpuves = savedUVE.dvpuves;
         assertNotNull(saveddvpuves);
         assertFalse(saveddvpuves.isEmpty()); // DARF ICH DAS SO?
-        assertTrue(saveddvpuves.size()== uvEreignis.getDvpuves().size()); // asserEquals geht bei ints doch nicht?
+        assertTrue(saveddvpuves.size()== uvEreignis.dvpuves.size()); // asserEquals geht bei ints doch nicht?
 
         for (int i = 0; i < saveddvpuves.size(); i++) {
-            assertEquals(uvEreignis.getDvpuves().get(i), saveddvpuves.get(i));
+            assertEquals(uvEreignis.dvpuves.get(i), saveddvpuves.get(i));
         }
 
-        /** Test DVP **/
-        final DVPerson savedDVP = saveddvpuves.get(0).getDvPerson();
+        /* Test DVP **/
+        final DVPerson savedDVP = saveddvpuves.get(0).dvPerson;
         assertNotNull(savedDVP);
         assertEquals(dvp, savedDVP);
-        assertEquals(dvp.getDvpId(), savedDVP.getDvpId());
-        assertEquals(dvp.getBild(), savedDVP.getBild());
+        assertEquals(dvp.dvpId, savedDVP.dvpId);
+        assertEquals(dvp.bild, savedDVP.bild);
         LOGGER.debug("saved dv person: " + savedDVP.toString());
 
-        /** Test Position **/
-        final Position savedPosition = savedDVP.getPosition();
+        /* Test Position **/
+        final Position savedPosition = savedDVP.position;
         assertNotNull(savedPosition);
-        assertEquals(dvp.getPosition(), savedPosition);
-        assertEquals(position.getLatitude(), savedPosition.getLatitude());
-        assertEquals(position.getLongitude(), savedPosition.getLongitude());
+        assertEquals(dvp.position, savedPosition);
+        assertEquals(position.latitude, savedPosition.latitude);
+        assertEquals(position.longitude, savedPosition.longitude);
 
         uveRepository.delete(savedUVE);
         LOGGER.debug("deleted uvEreignis: " + savedUVE.toString());

@@ -16,9 +16,11 @@ import javax.persistence.Embedded;
 @Setter
 public class Position {
     @Embedded
-    private Latitude latitude;
+    public
+    Latitude latitude;
     @Embedded
-    private Longitude longitude;
+    public
+    Longitude longitude;
 
     public Position() {
         this.latitude = new Latitude();

@@ -1,10 +1,9 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.service;
 
+import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.DVP;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.AufenthaltsorteRepository;
 import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.repositories.DvpRepository;
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.service.TrackerService;
-import de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.Aufenthaltsort;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

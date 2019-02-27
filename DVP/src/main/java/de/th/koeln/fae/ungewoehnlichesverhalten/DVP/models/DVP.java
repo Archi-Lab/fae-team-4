@@ -1,4 +1,5 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

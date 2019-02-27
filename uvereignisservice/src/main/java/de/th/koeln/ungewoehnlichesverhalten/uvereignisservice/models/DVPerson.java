@@ -17,13 +17,13 @@ import javax.persistence.*;
 @Setter
 @Getter
 public class DVPerson {
-    private long dvpId;
+    long dvpId;
 
     @Embedded
-    private Bild bild;
+    Bild bild;
 
     @Embedded
-    private Position position;
+    Position position;
 
     @Override
     public String toString(){

@@ -1,18 +1,12 @@
 package de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.models;
 
-import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing.events.DvpUveEvent;
-import de.th.koeln.ungewoehnlichesverhalten.uvereignisservice.infrastructure.eventing.internal.KafkaGateway;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.kafka.support.SendResult;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Klasse für das Ungewöhnliche Verhalten Ereignis (UVE) welches nach Meldung durch die MAS erstellt wird und kann mehrere DVPs beinhalten
@@ -29,15 +23,14 @@ public class UVEreignis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    long id;
 
     @ElementCollection(targetClass = DvpUve.class)
-    private List<DvpUve> dvpuves = new ArrayList<>();
+    List<DvpUve> dvpuves = new ArrayList<>();
 
     @Embedded
-    private Sprachnachricht sprachnachricht; // TODO Sprachnachricht nur im UVE oder DVP-UVE?
-    private Date zeitstempel;
-    private Status status;
+    Date zeitstempel;
+    Status status;
 
 
     public UVEreignis(){
@@ -53,8 +46,8 @@ public class UVEreignis {
         } else {
             Status neuerStatus = Status.values()[Status.values().length-1];
             for (DvpUve dvpUve : dvpuves) {
-                if (dvpUve.getStatus().ordinal() < neuerStatus.ordinal()) {
-                    neuerStatus = dvpUve.getStatus();
+                if (dvpUve.status.ordinal() < neuerStatus.ordinal()) {
+                    neuerStatus = dvpUve.status;
                 }
             }
             status = neuerStatus;

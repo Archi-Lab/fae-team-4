@@ -1,7 +1,5 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
-
-
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
