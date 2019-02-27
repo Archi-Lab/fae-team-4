@@ -7,6 +7,9 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 import java.util.regex.Pattern;
 
+/**
+ * Klasse für eine Postleitzahl
+ */
 @Embeddable
 @Getter
 @Setter

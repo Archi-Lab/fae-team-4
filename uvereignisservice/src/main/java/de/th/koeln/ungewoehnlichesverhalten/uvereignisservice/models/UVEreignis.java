@@ -14,6 +14,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Klasse für das Ungewöhnliche Verhalten Ereignis (UVE) welches nach Meldung durch die MAS erstellt wird und kann mehrere DVPs beinhalten
+ * id enthält die eindeutige ID des Ereignisses
+ * dvpuves enthält die Liste der DvpUves (siehe Klasse DvpUve)
+ * zeitstempel enthält den Zeitstempel des Meldens durch die MAS
+ * sprachnachricht enthält die Sprachnachricht
+ * status enthält den aktuellen Status des UVE
+ */
 @Entity
 @Setter
 @Getter

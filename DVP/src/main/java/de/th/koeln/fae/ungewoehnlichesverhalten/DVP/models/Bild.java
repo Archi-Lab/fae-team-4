@@ -1,9 +1,12 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models;
 
-import lombok.Getter;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für die Bilder von Dementiell Veränderten Personen
+ * bild enthält die URL auf ein Profilbild
+ */
 @Embeddable
 public class Bild {
     private final String bild;
@@ -22,7 +25,9 @@ public class Bild {
 
     private boolean isValid(String bild)
     {
-        // todo: kann das überorüft werden?
+        // Die URL auf das Bild kann zum jetzigen Zeitpunkt nicht validiert werden, da Bilder noch nicht in das System integriert wurden.
+        // Diese Klasse dient nut dazu diese für später vorzumerken.
+
         return true;
     }
 

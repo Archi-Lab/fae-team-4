@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für eine Stadt
+ */
 @Getter
 @Setter
 @Embeddable

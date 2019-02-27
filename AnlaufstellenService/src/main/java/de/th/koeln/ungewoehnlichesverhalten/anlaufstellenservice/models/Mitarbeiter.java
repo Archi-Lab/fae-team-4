@@ -6,7 +6,12 @@ import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-
+/**
+ * Klasse für die Mitarbeiter einer Anlaufstelle (MAS)
+ * anlaufstelle enthält die Anlaufstelle (Arbeitgeben) des Mitarbeiters
+ * vorname enthält den Vornamen (Details: siehe Klasse Vorname)
+ * nachname enthält den Nachnamen (Details: siehe Klasse Nachname)
+ */
 @Entity
 public class Mitarbeiter {
 

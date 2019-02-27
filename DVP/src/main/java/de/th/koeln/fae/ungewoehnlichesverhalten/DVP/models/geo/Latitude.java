@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für Latitude (Breitengrad) der GPS Position
+ */
 @Embeddable
 public class Latitude {
 

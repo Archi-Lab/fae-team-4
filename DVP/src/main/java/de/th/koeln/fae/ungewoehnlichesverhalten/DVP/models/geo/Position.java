@@ -1,10 +1,14 @@
 package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
 
-import lombok.Getter;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
+/**
+ * Klasse für eine GPS Position
+ * Wird durch Latitude, Longitude und Altitude definiert
+ */
 @Embeddable
 public class Position {
     @Embedded

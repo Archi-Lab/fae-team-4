@@ -9,6 +9,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasse für eine Anlaufstelle
+ * name enthält den Namen der Anlaufstalle
+ * mitarbeiter enhält eine Liste der Mitarbeiter (MAS, Details: siehe Klasse Mitarbeiter)
+ * adresse enhält die Adresse der Anlaufstelle (Details: siehe Klasse Adresse)
+ */
 @Entity
 @Setter
 @Getter

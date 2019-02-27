@@ -8,6 +8,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.UUID;
 
+/**
+ * Klasse für das Ungewöhnliche Verhalten Ereignis (UVE) einer Dementiell Veränderten Personen (DVP)
+ * dvpUveId enthält die eindeutige UUID des Ereignisses
+ * dvPerson enthält Dementiell Veränderten Personen
+ * sprachnachricht enthält die Sprachnachricht
+ * status enthält den aktuellen Status des DvpUve
+ */
 @Setter
 @Getter
 @Embeddable

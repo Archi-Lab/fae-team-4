@@ -2,6 +2,9 @@ package de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für Altitude (Höhenangabe) der GPS Position
+ */
 @Embeddable
 public class Altitude {
 
@@ -19,7 +22,8 @@ public class Altitude {
         altitude = alt;
     }
 
-    private boolean isValid(double lat){
+
+    private boolean isValid(double alt){
         return true;
     }
 

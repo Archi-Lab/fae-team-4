@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für den Vornamen einer Person
+ */
 @Embeddable
 @Getter
 @Setter

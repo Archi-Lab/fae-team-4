@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
-
+/**
+ * Klasse für den Namen einer Anlaufstelle
+ */
 @Embeddable
 @Getter
 @Setter

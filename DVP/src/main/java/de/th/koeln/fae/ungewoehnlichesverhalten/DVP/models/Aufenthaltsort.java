@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.util.UUID;
 import java.time.Instant;
 
+/**
+ * Klasse für den Aufenthaltsort einer Dementiell Veränderten Personen
+ * Der Aufenthaltsort wird durch die Kombination einer Position und eines Zeitstempels gebildet
+ */
 @Entity
 public class Aufenthaltsort {
 

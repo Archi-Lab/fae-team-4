@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Klasse für Latitude (Breitengrad) der GPS Position
+ */
 @Embeddable
 @Getter
 @Setter
@@ -26,7 +29,9 @@ public class Bild {
 
     private boolean isValid(String bild)
     {
-        // todo: kann das überorüft werden?
+        // Die URL auf das Bild kann zum jetzigen Zeitpunkt nicht validiert werden, da Bilder noch nicht in das System integriert wurden.
+        // Diese Klasse dient nut dazu diese für später vorzumerken.
+
         return true;
     }
 }

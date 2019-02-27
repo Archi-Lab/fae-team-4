@@ -7,6 +7,9 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
+/**
+ * Klasse für eine Adresse definiert durch Straße Hausnummer, Poostleitzahl, Stadt und einer GPS Position
+ */
 @Embeddable
 @Setter
 @Getter

@@ -7,6 +7,10 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
+/**
+ * Klasse für eine GPS Position
+ * Wird durch Latitude und Longitude definiert
+ */
 @Embeddable
 @Getter
 @Setter
