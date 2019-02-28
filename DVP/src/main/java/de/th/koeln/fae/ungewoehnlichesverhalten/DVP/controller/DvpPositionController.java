@@ -30,12 +30,23 @@ public class DvpPositionController {
     }
 
 
+    /**
+     * Custom GET Mapping für Filterparameter der DVPs
+     * Gibt alle DVPs zurück, die sich in einem gewissen radius um die Koordinaten (lon, lat) befinden
+     * Werden die Suchparameter nicht angegeben, gibt die GET Methode alle DVPs zurück.
+     *
+     * Beispiel: http://localhost:8081/dvps?lat=1{@literal &}lon=2{@literal &}radius=10
+     *
+     * @param lat Latitude des Punktes
+     * @param lon Longitude des Punktes
+     * @param radius Suchradius um den Punkt
+     * @return
+     */
     @GetMapping()
     public ResponseEntity<?> getDVPs(@RequestParam(name = "latitude", required = false, defaultValue = "0") double lat,
                                           @RequestParam(name = "longitude", required = false, defaultValue = "0") double lon,
                                           @RequestParam(name = "radius", required = false, defaultValue = "0") int radius)
     {
-        // Beispiel: http://localhost:8081/dvps?lat=1&lon=2&radius=10
         Iterable<DVP> dvps;
 
         if(lat > 0 && lon > 0 && radius > 0) {

@@ -23,11 +23,14 @@ public class Bild {
        bild = image;
     }
 
+    /**
+     * Die URL auf das Bild kann zum jetzigen Zeitpunkt nicht validiert werden, da Bilder noch nicht in das System integriert wurden.
+     * Diese Klasse dient nut dazu diese für später vorzumerken.
+     * @param bild Pfad zum Bild
+     * @return
+     */
     private boolean isValid(String bild)
     {
-        // Die URL auf das Bild kann zum jetzigen Zeitpunkt nicht validiert werden, da Bilder noch nicht in das System integriert wurden.
-        // Diese Klasse dient nut dazu diese für später vorzumerken.
-
         return true;
     }
 

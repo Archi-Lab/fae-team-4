@@ -21,6 +21,10 @@ public class DvpServiceImpl implements DvpService {
 	@Autowired
 	DvpRepository dvpRepository;
 
+	/**
+	 * Erstellen einer DVP
+	 * @param eventDvp zu erstellende DVP
+	 */
 	@Override
 	public void handleDvpCreatedEvent(DVP eventDvp) {
 		LOGGER.info("Handle dvp-created Event");
@@ -28,6 +32,12 @@ public class DvpServiceImpl implements DvpService {
 	}
 
 
+	/**
+	 * Aktualisieren einer DVP
+	 * Die passende DVP wird anhand der UUID aus dem Repository gesucht und ersetzt. Aufenthaltsorte werden übernommen.
+	 * Wird keine DVP gefunden, wird diese neu angelegt und eine Warnmeldung hinterlegt.
+	 * @param eventDvp Zu aktualisierende DVP
+	 */
 	@Override
 	public void handleDvpUpdatedEvent(DVP eventDvp) {
 		LOGGER.info("Handle dvp-updated Event");
@@ -46,6 +56,10 @@ public class DvpServiceImpl implements DvpService {
 		}
 	}
 
+	/**
+	 * Löschen einer DVP
+	 * @param eventDvp zu löschende DVP
+	 */
 	@Override
 	public void handleDvpDeletedEvent(DVP eventDvp) {
 		LOGGER.info("Handle dvp-deleted Event");

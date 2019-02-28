@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+/**
+ * Implementierung der Custom-Funktionen für das Durchsuchen des DVP Repositories
+ */
 @Repository
 @Transactional(readOnly = true)
 public class CustomDvpRepositoryImpl implements CustomDvpRepository {
@@ -21,6 +24,14 @@ public class CustomDvpRepositoryImpl implements CustomDvpRepository {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Suchen einer DVP im Umkreis eines definierten Punktes.
+     *
+     * @param lat {@link de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Latitude} des Punktes
+     * @param lon {@link de.th.koeln.fae.ungewoehnlichesverhalten.DVP.models.geo.Longitude} des Punktes
+     * @param radius um den Punkt
+     * @return
+     */
     @Override
     public Iterable<DVP> findAllByUmkreissuche(double lat, double lon, long radius) {
 
