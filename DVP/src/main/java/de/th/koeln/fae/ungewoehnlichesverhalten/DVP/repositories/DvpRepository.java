@@ -12,6 +12,7 @@ public interface DvpRepository extends CrudRepository<DVP, Long> {
 
     @Override
     Iterable<DVP> findAll();
-    DVP findById(long id);
+    Optional<DVP> findById(UUID id);
     Optional<DVP> findByTrackerId(UUID id);
+    void deleteById(UUID id);
 }

@@ -16,7 +16,7 @@ import java.util.UUID;
 public class DVP {
 
     @Id
-    private UUID dvpId;
+    private UUID id;
 
     @Embedded
     private Bild bild;
@@ -31,11 +31,11 @@ public class DVP {
     }
 
     public DVP(final UUID id) {
-        this.dvpId = id;
+        this.id = id;
     }
 
     public DVP(final UUID id, final UUID trackerId, final String bildUrl) {
-        this.dvpId = id;
+        this.id = id;
         this.trackerId = trackerId;
         this.bild = new Bild(bildUrl);
     }
@@ -61,8 +61,8 @@ public class DVP {
         this.trackerId = trackerId;
     }
 
-    public UUID getDvpId() {
-        return dvpId;
+    public UUID getId() {
+        return id;
     }
 
     public String getBildUrl() {
@@ -75,5 +75,9 @@ public class DVP {
 
     public List<Aufenthaltsort> getAufenthaltsorte() {
         return aufenthaltsorte;
+    }
+
+    public void setAufenthaltsorte(List<Aufenthaltsort> aufenthaltsorte) {
+        this.aufenthaltsorte = aufenthaltsorte;
     }
 }

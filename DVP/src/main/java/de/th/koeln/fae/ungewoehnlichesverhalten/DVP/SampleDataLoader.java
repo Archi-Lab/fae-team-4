@@ -10,19 +10,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    @Autowired
-    private DvpRepository dvpRepository;
-
-    @Autowired
-    private AufenthaltsorteRepository aufenthaltsorteRepository;
-
-    private String[] bildUrls = {"MaxURL", "PeterURL", "MariaURL", "HansURL", "FrankURL"};
-
+//    @Autowired
+//    private DvpRepository dvpRepository;
+//
+//    @Autowired
+//    private AufenthaltsorteRepository aufenthaltsorteRepository;
+//
+//    private String[] bildUrls = {"MaxURL", "PeterURL", "MariaURL", "HansURL", "FrankURL"};
+//
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-
-        if(aufenthaltsorteRepository.count() > 0)
-            return;
+//
+//        if(aufenthaltsorteRepository.count() > 0)
+//            return;
 
 //       for (int i = 1; i <= 5; i++)
 //       {
